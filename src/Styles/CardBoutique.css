@@ -1,0 +1,194 @@
+.cardBoutique{
+  margin: 100px;
+  width: auto;
+  height: auto;
+  max-height: 320px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 10px;
+  background-color: rgb(252, 246, 246);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.281);
+}
+.cardBoutique:hover{
+  transform: scale(1.05);
+}
+.cardBoutiqueimage1{
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  width: 100%;
+  height: 90px;
+}
+.cardBoutiquename{
+  position: absolute;
+  top: 5%;
+  margin: 2px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  
+}
+.cardBoutiquename h1{
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-size:medium;
+    font-weight: 400;
+    overflow: hidden;
+    color: aliceblue;
+}
+.cardBoutiquename h2{
+  
+  font-size: 12px;
+    overflow: hidden;
+    margin-top: -6px;
+    margin-left: 3px;
+    white-space: nowrap;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    color: aliceblue;
+}
+.cardBoutiquename h1:hover,.cardBoutiquename h2:hover,.cardBoutiquename h3:hover{ 
+  text-decoration: underline;
+  cursor: pointer;
+}
+.cardBoutiquename h3{
+  font-size: 10px;
+  color: aliceblue;
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  margin-top: -8px;
+  margin-left: 4px;
+}
+.cardBoutiqueimage22{
+  position: absolute;
+  aspect-ratio: 1 / 1;
+  border-radius:50% ;
+  width: 100px;
+  top :20px;
+  z-index: 20;
+  right: 2%;
+}
+
+.cardBoutique .notification{
+  position: relative;
+  z-index: 10;
+  
+  overflow: auto;
+  height: 60%;
+
+  border-bottom:0.7px solid rgba(0, 0, 0, 0.158);
+  
+}
+.cardBoutique .notification ul li{
+  list-style-type: none;
+}
+
+.cardBoutique .notification ul li:hover{
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+
+}
+.cardBoutique .footer{
+  display: flex;
+  justify-content: end;
+  
+}
+.cardBoutique .footer button{
+ width: 35px;
+ height: 35px;
+ margin-right: 5px;
+ border: none;
+ margin: 5px;
+ padding: 5px;
+ border-radius: 50%;
+}
+.cardBoutique .footer button:hover{
+  background-color: rgba(0, 0, 0, 0.322);
+  
+ }
+ 
+
+
+
+
+
+
+
+
+/* cardBoutique2 style */
+   
+  .cardBoutique2 .flex-container {
+    display: flex;
+    align-items: center;
+  }
+  .vgvgvg{
+    margin-left: 10px;
+  }
+  .cardBoutique2 .starsnumber {
+    color: gold;
+    font-size: x-small;
+  }
+  
+  .cardBoutiqueimage2 {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .cardBoutiquename2 {
+    font-size: small;
+  }
+  
+  
+  /* @media screen and (max-width: 1041px) {
+    .cardBoutique{
+   
+      height: 150px !important; 
+      width: 150px !important;
+      
+   }
+  }
+  @media screen and (max-width: 964px) {
+    .cardBoutique{
+      width: 120px !important;
+      height: 120px!important;
+      margin-left: 10px;
+      margin-bottom: 20px;
+    
+    }
+  }
+  @media screen and (max-width:586px) {
+    .cardBoutique{
+      width: 120px !important;
+      height: 120px!important;
+      margin-left: 20px;
+      margin-bottom: 20px;
+    
+    }
+  }
+  @media screen and (max-width: 436px) {
+    .cardBoutique{
+      width: 130px !important;
+      height: 130px!important;
+      margin-left: 30px;
+      margin-bottom: 20px;
+    
+    }
+  }
+  @media screen and (max-width: 346px) {
+    .cardBoutique{
+      width: 120px !important;
+      height: 120px!important;
+      margin-left: 30px;
+      margin-bottom: 20px;
+    
+    }
+  }
+  @media screen and (max-width:326px) {
+    .cardBoutique{
+      width: 140px !important;
+      height: 140px!important;
+      margin-left: 30px;
+      margin-bottom: 20px;
+    
+    }
+  } */
