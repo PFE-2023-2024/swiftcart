@@ -1,10 +1,57 @@
+
+.alertsucces{
+    z-index: 2041;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    transform: translate(-50%, -50%);
+}
+.loader {
+    width: 200px;
+    aspect-ratio: 2;
+    --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
+    background: 
+      var(--_g) 0%   50%,
+      var(--_g) 50%  50%,
+      var(--_g) 100% 50%;
+    background-size: calc(100%/3) 50%;
+    animation: l3 1s infinite linear;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+  }
+  @keyframes l3 {
+      20%{background-position:0%   0%, 50%  50%,100%  50%}
+      40%{background-position:0% 100%, 50%   0%,100%  50%}
+      60%{background-position:0%  50%, 50% 100%,100%   0%}
+      80%{background-position:0%  50%, 50%  50%,100% 100%}
+  }
+
+
+@media screen and (max-width: 450px) {
+   .alertsucces{width: 300px;}
+}
+@media screen and (max-width: 300px) {
+    .alertsucces{width: 250px;}
+ }
+.stoppage{
+    width: 100%;
+    position: relative;
+    z-index: 2040;
+    height: 100vh;
+    animation: ease;
+    background-color: rgba(0, 0, 0, 0.336);
+}
 .Cadre{
     width: 310px;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 10px;
     left: 10px;
-    z-index: 1045;
+    z-index: 1040;
     bottom: 5px;
     background-color: rgb(252, 252, 255);
     border-radius: 10px;

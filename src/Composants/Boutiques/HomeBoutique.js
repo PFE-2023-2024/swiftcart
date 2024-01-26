@@ -9,6 +9,25 @@ import BoutiqueSideBar from './BoutiqueSideBar';
 import Formuler from './CreeBoutique/Formuler';
 import { FiMenu } from "react-icons/fi";
 function HomeBoutique(){
+
+  const [menuList, setmenuList] = useState([]);
+
+  ///////////////////////////////////////////////////////////////
+       const relodedata = async () =>{
+              let test=null
+              try {            
+                const response = await fetch("http://localhost:4000/boutiques/1");
+                test = await response.json();
+                
+              } catch (err) {
+                console.error(err.message);
+                test = []; // Set a default value (empty array) in case of an error
+              }
+              setmenuList(prevState => test);
+            }
+
+////////////////////////////////////////////////////////////            
+          
   const handleWindowResize = () => {
     if (window.innerWidth < 1014) {
       setIsSideleftbarOpen(false);
@@ -17,6 +36,8 @@ function HomeBoutique(){
     }
   };
   useEffect(() => {
+    relodedata();
+
     // Add event listener for window resize
     window.addEventListener('resize', handleWindowResize);
 
@@ -69,8 +90,8 @@ function HomeBoutique(){
       <Navbar.Toggle className='navbarboggle'/>
     </Navbar>
     <div className='coco' >
-   {isSidebarleftOpen && <div className={`si ${isSidebarOpen ? 'falowpage2' : ''  }`}><BoutiqueSideBar></BoutiqueSideBar></div>}
-    <div className={`${isSidebarleftOpen ? 'se' :'se2'} ${isSidebarOpen ? 'falowpage2' : ''  }`}><ListeBoutique function1 ={toggleopen} ></ListeBoutique></div>
+   {isSidebarleftOpen && <div className={`si ${isSidebarOpen ? 'falowpage2' : ''  }`}><BoutiqueSideBar menuList={menuList}></BoutiqueSideBar></div>}
+    <div className={`${isSidebarleftOpen ? 'se' :'se2'} ${isSidebarOpen ? 'falowpage2' : ''  }`}><ListeBoutique function1 ={toggleopen} menuList={menuList}></ListeBoutique></div>
     {isSidebarOpen &&<Formuler function1 ={toggleClose}  ></Formuler>}
     </div>
         </>

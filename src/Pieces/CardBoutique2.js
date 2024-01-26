@@ -2,13 +2,16 @@ import React from 'react';
 import '../Styles/CardBoutique.css';
 import image from '../assets/images/Boutique.jpg';
 import { FaStar } from 'react-icons/fa';
-
-function CardBoutique2() {
+import image2 from '../assets/images/profile.png';
+function CardBoutique2({list}) {
+  const handleImageError2 = (e) => {
+    e.target.src = image2; // Utilisation de l'image de remplacement
+};
   return (
     <section className='cardBoutique2'>
       <div className='flex-container'>
       <div>
-          <img className='cardBoutiqueimage2' src={image} alt='Boutique Image' />
+          <img className='cardBoutiqueimage2' src={`${'http://localhost:4000/'+encodeURIComponent(list.imagemagazine)}`}onError={handleImageError2}/>
         </div>
         <div className='vgvgvg'>
             
@@ -19,7 +22,7 @@ function CardBoutique2() {
             <FaStar />
             <FaStar />
           </div>
-          <h1 className='cardBoutiquename2'>Boulangerie Houssem</h1>
+          <h1 className='cardBoutiquename2'>{list.nom_admin}</h1>
         </div>
         
       </div>

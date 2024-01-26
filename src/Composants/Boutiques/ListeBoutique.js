@@ -1,9 +1,14 @@
 import CardBoutique from "../../Pieces/CardBoutique";
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import '../../Styles/ListeBoutique.css'
 import { IoAddOutline } from "react-icons/io5";
 <IoAddOutline />
-function ListeBoutique({function1 }){
+function ListeBoutique({function1,menuList }){
+
+   
+  
+  /////////////////////////////////////////////////////////////////
+   
     
     return(
     <>
@@ -11,18 +16,18 @@ function ListeBoutique({function1 }){
     <div className="add" onClick={function1}>
     <IoAddOutline/>
     </div>    
-    
-   <CardBoutique className='listeitem'></CardBoutique>
-   <CardBoutique className='listeitem'></CardBoutique>
-   <CardBoutique className='listeitem'></CardBoutique>
-   <CardBoutique className='listeitem'></CardBoutique>
-   <CardBoutique className='listeitem'></CardBoutique>
-   <CardBoutique className='listeitem'></CardBoutique>
-   <CardBoutique className='listeitem'></CardBoutique>
-   <CardBoutique className='listeitem'></CardBoutique>
-   <CardBoutique className='listeitem'></CardBoutique>
-   <CardBoutique className='listeitem'></CardBoutique>
-   
+
+  
+   {menuList && menuList.map((menuItem, key) => {
+    return (
+        <CardBoutique
+            key={key}
+            className='listeitem'
+            list={menuItem}
+        />
+    );
+})}
+
    </div>
     </>)
 }

@@ -5,7 +5,7 @@ import { SlArrowRight } from "react-icons/sl";
 import { SlArrowDown } from "react-icons/sl";
 import CardBoutique2 from "../../Pieces/CardBoutique2";
 import { SiHomeassistantcommunitystore } from "react-icons/si";
-function BoutiqueSideBar() {
+function BoutiqueSideBar({menuList}) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
@@ -18,16 +18,20 @@ function BoutiqueSideBar() {
         <button className="aaww" onClick={toggleSidebar}><h5><SiHomeassistantcommunitystore/> Account</h5> <h5>{isSidebarOpen && <SlArrowRight/> } { !isSidebarOpen &&<SlArrowDown/>}</h5></button>
         {isSidebarOpen && (
           <div >
-            <Nav.Link className="link" href="/link"><CardBoutique2/></Nav.Link>
-            <Nav.Link className="link" href="/link"><CardBoutique2/></Nav.Link>
-            <Nav.Link className="link" href="/link"><CardBoutique2/></Nav.Link>
-            <Nav.Link className="link" href="/link"><CardBoutique2/></Nav.Link>
-            <Nav.Link className="link" href="/link"><CardBoutique2/></Nav.Link>
-            <Nav.Link className="link" href="/link"><CardBoutique2/></Nav.Link>
-            <Nav.Link className="link" href="/link"><CardBoutique2/></Nav.Link>
-            <Nav.Link className="link" href="/link"><CardBoutique2/></Nav.Link>
-            <Nav.Link className="link" href="/link"><CardBoutique2/></Nav.Link>
-            <Nav.Link className="link" href="/link"><CardBoutique2/></Nav.Link>
+            
+
+            {menuList && menuList.map((menuItem, key) => {
+    return (
+      <Nav.Link className="link" href="/link">
+        <CardBoutique2
+            key={key}
+            className='listeitem'
+            list={menuItem}
+        /></Nav.Link>
+    );
+})} 
+            
+          
           </div>
         )}
       </div>
