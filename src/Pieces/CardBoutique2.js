@@ -12,7 +12,7 @@ function CardBoutique2({list}) {
     <section className='cardBoutique2'>
       <div className='flex-container'>
       <div>
-          <img className='cardBoutiqueimage2' src={`${'http://localhost:4000/'+encodeURIComponent(list.imagemagazine)}`}onError={handleImageError2}/>
+          <img className='cardBoutiqueimage2' src={`${'/'+encodeURIComponent(list.imagemagazine)}`}onError={handleImageError2}/>
         </div>
         <div className='vgvgvg'>
             

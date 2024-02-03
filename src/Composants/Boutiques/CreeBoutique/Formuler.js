@@ -69,7 +69,7 @@ function Formuler({function1}){
         formData.append('categorie', boutiqueInfo.categorie);
         formData.append('admin', 1);
         try {
-         const reponse= await axios.post('http://localhost:4000/insert/boutiques', formData, {
+         const reponse= await axios.post('/insert/boutiques', formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
             },

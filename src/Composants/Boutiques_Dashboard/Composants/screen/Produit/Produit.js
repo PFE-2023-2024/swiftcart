@@ -9,7 +9,7 @@ function Produit(props) {
   const relodedata = async () =>{
     let test=null
     try {            
-      const response = await fetch("http://localhost:4000/produit/boutiques/"+props.data.list.idboutique);
+      const response = await fetch("/produit/boutiques/"+props.data.list.idboutique);
       test = await response.json();
     } catch (err) {
       console.error(err.message);

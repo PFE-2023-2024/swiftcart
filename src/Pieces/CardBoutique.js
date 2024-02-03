@@ -20,9 +20,9 @@ function CardBoutique ({list}){
     return(
   
     <div onClick={navTo} className='cardBoutique'>
-        <img className='cardBoutiqueimage1' src={`${'http://localhost:4000/'+encodeURIComponent(list.imagecouverture)}`} onError={handleImageError}></img>
+        <img className='cardBoutiqueimage1' src={`${'/'+encodeURIComponent(list.imagecouverture)}`} onError={handleImageError}></img>
           
-        <img className='cardBoutiqueimage22'  src={`${'http://localhost:4000/'+encodeURIComponent(list.imagemagazine)}`}onError={handleImageError2}></img>
+        <img className='cardBoutiqueimage22'  src={`${'/'+encodeURIComponent(list.imagemagazine)}`}onError={handleImageError2}></img>
         <div className='notification'><ul>
         <li><MdMessage /> notification1</li>
             <li><MdMessage /> notification1</li>

@@ -23,7 +23,7 @@ function Navbar({setToggle,data}) {
         <div className="navright" >
              <button> <IoIosNotificationsOutline/> </button>
              <button><MdOutlineMailOutline/></button>
-             <Image width={40} src={`${'http://localhost:4000/'+encodeURIComponent(data.imagemagazine)}`}onError={handleImageError2} roundedCircle /> 
+             <Image width={40} src={`${'/'+encodeURIComponent(data.imagemagazine)}`}onError={handleImageError2} roundedCircle /> 
 
              </div>
         </div>

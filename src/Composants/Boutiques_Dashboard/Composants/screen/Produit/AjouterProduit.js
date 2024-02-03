@@ -32,7 +32,7 @@ export default function AjouterProduit({close,data}) {
 
 const categorySearch = async () => {
     try {            
-        const response = await fetch('http://localhost:4000/categorie_produit/boutiques/' + encodeURIComponent(data.list.categorie));
+        const response = await fetch('/categorie_produit/boutiques/' + encodeURIComponent(data.list.categorie));
         const test = await response.json();
         setCategories(test);
     } catch (err) {
@@ -99,7 +99,7 @@ useEffect(() => {
     
 
     try {
-      const reponse= await axios.post('http://localhost:4000/insert/produit', Data, {
+      const reponse= await axios.post('/insert/produit', Data, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

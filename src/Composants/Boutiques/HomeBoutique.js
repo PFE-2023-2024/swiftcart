@@ -17,7 +17,7 @@ function HomeBoutique(){
        const relodedata = async () =>{
               let test=null
               try {            
-                const response = await fetch("http://localhost:4000/boutiques/1");
+                const response = await fetch("/boutiques/1");
                 test = await response.json();
                 
               } catch (err) {

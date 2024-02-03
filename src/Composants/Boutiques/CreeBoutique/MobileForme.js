@@ -36,7 +36,7 @@ function MobileForme({function1}) {
     const categorieSearche =async ()=> {
         let test=null
         try {            
-        const response = await fetch('http://localhost:4000/Categorie/boutiques/');
+        const response = await fetch('/Categorie/boutiques/');
         test = await response.json();
         
         } catch (err) {
@@ -122,7 +122,7 @@ function MobileForme({function1}) {
     formData.append('categorie', boutiqueInfo.categorie);
     formData.append('admin', 1);
     try {
-     const reponse= await axios.post('http://localhost:4000/insert/boutiques', formData, {
+     const reponse= await axios.post('/insert/boutiques', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

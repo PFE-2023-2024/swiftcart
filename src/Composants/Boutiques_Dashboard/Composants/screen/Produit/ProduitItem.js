@@ -18,7 +18,7 @@ export default function ProduitItem({data}) {
   return (
     <div className='ProduitItem'>
         <div className='image'>
-            <img src={`${'http://localhost:4000/'+encodeURIComponent(data.images[0])}`}onError={handleImageError2}>
+            <img src={`${'/'+encodeURIComponent(data.images[0])}`}onError={handleImageError2}>
             </img>
 
         </div>
