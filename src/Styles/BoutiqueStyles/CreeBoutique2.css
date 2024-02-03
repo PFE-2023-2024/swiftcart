@@ -1,0 +1,399 @@
+
+.alertsucces{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% ,-50%);
+    z-index: 10000;
+    width: 400px;
+    background-color: rgba(49, 46, 46, 0.1);
+    
+}
+.loader {
+    width: 200px;
+    aspect-ratio: 2;
+    --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
+    background: 
+      var(--_g) 0%   50%,
+      var(--_g) 50%  50%,
+      var(--_g) 100% 50%;
+    background-size: calc(100%/3) 50%;
+    animation: l3 1s infinite linear;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+  }
+  @keyframes l3 {
+      20%{background-position:0%   0%, 50%  50%,100%  50%}
+      40%{background-position:0% 100%, 50%   0%,100%  50%}
+      60%{background-position:0%  50%, 50% 100%,100%   0%}
+      80%{background-position:0%  50%, 50%  50%,100% 100%}
+  }
+
+
+@media screen and (max-width: 450px) {
+   .alertsucces{width: 300px;}
+}
+@media screen and (max-width: 300px) {
+    .alertsucces{width: 250px;}
+ }
+.stoppage{
+    width: 100%;
+    position: relative;
+    z-index: 2040;
+    height: 100vh;
+    animation: ease;
+    background-color: rgba(0, 0, 0, 0.336);
+}
+
+.Page1 .nav{
+    background-color: white;
+    padding: 5px;
+    height: 50px;
+    
+    
+}
+
+.carousel .Page1 .nav button{
+    border: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    padding: 0px;
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.37);
+}
+.Page1 .nav  button:hover{
+    transform: scale(1.1);
+    
+}
+.Page1 {
+    height:100vh;
+    background:linear-gradient(rgba(255, 255, 255, 0.1), rgba(191, 191, 194, 0.5)), url('../../assets/images/E-Commerce-Shoppin.png');
+    background-position: center center; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    top: 0;
+}
+.Page1 .body{
+    background-color: azure;
+    padding: 30px;
+    position: absolute;
+    top : 60px;
+    left:20px;
+    right: 20px;
+    
+}
+.Page1 .body h1{
+    font-size: 20px;
+    font-weight: bold;
+}
+.Page1 .body p{
+    font-size: medium;
+    font-weight: 500;
+    color: black;
+}
+.Page1 .footter{
+    position: absolute;
+    bottom: 0px;
+    height: 20%;
+    background-color: rgba(0, 0, 0, 0.363);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Page1 .footter button {
+    border: none;
+    font-weight:600 ;
+    margin: 10px;
+    width: 50%;
+    padding: 4px;
+    border-radius: 5px;
+    color: white;
+    background-color: #0d53c4;
+    cursor: pointer;
+}
+.Page1 .footter button:hover{
+    border: 1px solid rgba(0, 0, 0, 0.486);
+}
+.Page1 .footter p{
+    
+    font-size: small;
+    margin: 10px;
+    color: white;
+}
+.Page1 .footter  p a{
+    cursor: pointer;
+    color: #0861f2;
+    display: block;
+}
+.Page1 .footter  p a:hover{
+    text-decoration: underline;
+    color: #0861f2;
+}
+.Page2{
+    height:100vh;
+   background-color: white;
+    position: relative; 
+}
+.Page2 .nav{
+    height: 50px;
+    background-color: white;
+    padding: 5px;
+    border-bottom: 0.1px solid rgba(0, 0, 0, 0.096) ;
+    
+}
+.Page2 .nav button{
+    border: none;
+    padding: 0px;
+    border-radius: 50%;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+   background-color: transparent;
+}
+.Page2 .nav  button:hover{
+    background-color: rgba(0, 0, 0, 0.11);
+}
+.Page2 .body{
+    padding: 20px;
+}
+.Page2 .footter{
+position: absolute;
+bottom: 5%;
+width: 100%;
+padding: 10px;
+display:flex;
+align-items: center;
+flex-direction: column;
+}
+.Page2 .footter button{
+    width: 50%;
+}
+.Page2 .footter .activer{
+    border: none;
+    font-weight:600 ;
+    margin: 10px; 
+    padding: 4px;
+    border-radius: 5px;
+    color: white;
+    background-color: #0d53c4;
+    cursor: pointer;
+
+}
+.Page2 .footter .deactiver{
+    padding: 4px;
+    border: none;
+    font-weight:600 ;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    color: #aaaaaa;
+    background-color: #dddddd; 
+    pointer-events: none;
+    cursor: not-allowed;
+}
+.Page3{
+    height:100vh;
+   background-color: white;
+    position: relative; 
+}
+.Page3 .nav{
+    height: 50px;
+    background-color: white;
+    padding: 5px;
+    border-bottom: 0.1px solid rgba(0, 0, 0, 0.096) ;
+    
+}
+.Page3 .nav button{
+    border: none;
+    padding: 0px;
+    border-radius: 50%;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+   background-color: transparent;
+}
+.Page3 .nav  button:hover{
+    background-color: rgba(0, 0, 0, 0.11);
+}
+.Page3 .body{
+    padding: 20px;
+    z-index: 0;
+}
+
+.Page3 .body .categorie{
+    background-color: #aaaaaa7e;
+    margin-top: 20px;
+    padding: 5px;
+    width: 200px;
+    margin-left: 20px;
+    padding-left: 20px;
+    border-radius: 5px;
+
+    
+}
+.Page3 .body  .custom-option-class    {
+    background-color: rgb(230, 199, 173);
+    color: white;
+   
+  }
+.Page3 .footter{
+position: absolute;
+bottom: 5%;
+width: 100%;
+padding: 10px;
+display:flex;
+align-items: center;
+flex-direction: column;
+}
+.Page3 .footter button{
+    width: 50%;
+}
+.Page3 .footter .activer{
+    border: none;
+    font-weight:600 ;
+    margin: 10px; 
+    padding: 4px;
+    border-radius: 5px;
+    color: white;
+    background-color: #0d53c4;
+    cursor: pointer;
+
+}
+.Page3 .footter .deactiver{
+    padding: 4px;
+    border: none;
+    font-weight:600 ;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    color: #aaaaaa;
+    background-color: #dddddd;
+    cursor: not-allowed;
+    pointer-events: none;
+
+}
+.Page4{
+    height:100vh;
+    background-color: white;
+    position: relative; 
+}
+.Page4 .nav{
+    height: 50px;
+    background-color: white;
+    padding: 5px;
+    border-bottom: 0.1px solid rgba(0, 0, 0, 0.096) ;
+    
+}
+.Page4 .nav button{
+    border: none;
+    padding: 0px;
+    border-radius: 50%;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+   background-color: transparent;
+}
+.Page4 .nav  button:hover{
+    background-color: rgba(0, 0, 0, 0.11);
+}
+.Page4 .body{
+   height: 80%;
+}
+.Page4 .body .photoCoverture {
+    position: relative;
+   
+    top: 5px;
+    left: 1%;
+    right: 1%;
+    height: 30%;
+    width: 98%;
+    border-radius: 5px;
+
+}
+.Page4 .body .photoCoverture input[type="file"] {
+ 
+    display: none;
+ }
+ .Page4 .body .photoCoverture .custom-file-input {
+    position: absolute;
+    height: 20%;
+    right: 10px;
+    border: 3px solid white;
+    bottom: 15px;
+    align-items: center;
+    justify-content: center;
+    color: #666565;
+    display: flex;
+    text-align: center;
+    aspect-ratio: 1 / 1;
+    border-radius:50% ;
+    background-color: #aaaaaa;
+}
+.Page4 .body .photoCoverture .custom-file-input:hover {
+    background-color: #0d0d0e10;
+    color: #aaaaaa;
+}
+
+.Page4 .body .photoCoverture .photoprofile {
+    position: absolute;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    height: 85%;
+    border: 3px solid white;
+    top: 50%;
+    right: 50%;
+    aspect-ratio: 1 / 1;
+    border-radius:50% ; 
+    transform: translate(  50%,0 );
+}
+
+.Page4 .body .photoCoverture .photoprofile .custom-file-input {
+    position: absolute;
+    height: 40px;
+    right: -5px;
+    border: 3px solid white;
+    bottom: 1px;
+    align-items: center;
+    justify-content: center;
+    color: #575454;
+    background-color: #aaaaaa;
+    display: flex;
+    text-align: center;
+    aspect-ratio: 1 / 1;
+    border-radius:50% ;
+}
+.Page4 .body .photoprofile .custom-file-input:hover {
+    background-color: #0d0d0e10;
+    color: #aaaaaa;
+}
+
+.Page4 .footter{
+    position: absolute;
+    bottom: 5%;
+    width: 100%;
+    padding: 10px;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    }
+.Page4 .footter button{
+    border: none;
+    width: 50%;
+    font-weight:600 ;
+    margin: 10px; 
+    padding: 4px;
+    border-radius: 5px;
+    color: white;
+    background-color: #0d53c4;
+    cursor: pointer;
+    }
+    .Page4 .footter button:hover{
+       background-color: #0861f2;
+        }

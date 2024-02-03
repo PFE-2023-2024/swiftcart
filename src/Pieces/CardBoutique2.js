@@ -1,6 +1,7 @@
 import React from 'react';
-import '../Styles/CardBoutique.css';
+import '../Styles/BoutiqueStyles/CardBoutique.css';
 import image from '../assets/images/Boutique.jpg';
+import Rating from '@mui/material/Rating';
 import { FaStar } from 'react-icons/fa';
 import image2 from '../assets/images/profile.png';
 function CardBoutique2({list}) {
@@ -16,13 +17,9 @@ function CardBoutique2({list}) {
         <div className='vgvgvg'>
             
           <div className='starsnumber'>
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaStar />
+          <Rating name="read-only" value={list.nombre_etoile} readOnly />
           </div>
-          <h1 className='cardBoutiquename2'>{list.nom_admin}</h1>
+          <h1 className='cardBoutiquename2'>{list.nom_admin}  {list.prenom_admin}</h1>
         </div>
         
       </div>

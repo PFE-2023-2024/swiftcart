@@ -1,12 +1,13 @@
 .sidebar {
     height: 100%;
+    z-index: 101;
     width: 300px;
     position: fixed;
     top: 0;
     right: 0;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    background-color: #dddddd; /* Couleur de fond de la barre latérale */
+    background-color: #fff; /* Couleur de fond de la barre latérale */
     padding-top: 20px;
   }
 
@@ -34,8 +35,13 @@
   }
 
   .blurred {
-    filter: blur(0.7px); /* Ajustez le flou selon vos préférences */
-    pointer-events: none; /* Permet aux clics de passer à travers le contenu flou */
+    position: fixed;
+    height: 100vh;
+    top: 0;
+     z-index: 100;
+     width: 100%;
+     background-color: rgba(49, 46, 46, 0.1); /* Ajustez le flou selon vos préférences */
+     pointer-events: none; /* Permet aux clics de passer à travers le contenu flou */
   }
   .tetesidbar{
     margin-left: 20px;

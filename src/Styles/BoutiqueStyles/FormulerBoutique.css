@@ -1,11 +1,13 @@
 
 .alertsucces{
-    z-index: 2041;
     position: fixed;
     top: 50%;
     left: 50%;
+    transform: translate(-50% ,-50%);
+    z-index: 10000;
     width: 400px;
-    transform: translate(-50%, -50%);
+    background-color: rgba(49, 46, 46, 0.1);
+    
 }
 .loader {
     width: 200px;
@@ -99,13 +101,10 @@
 font-size: x-small;
 font-family: sans-serif;
 }
-.Cadre form .form input{
+
+.Cadre form .TextField{
     margin-left: 10px;
-    margin-right:10px ;
     width: 90%;
-    padding-left: 7px;
-    height: 40px;
-    margin-bottom: 10px;
 }
 .Cadre form .form select{
     margin-left: 10px;
@@ -113,6 +112,13 @@ font-family: sans-serif;
     padding-left: 7px;
     height: 40px;
     width: 90%;
+}
+.Cadre .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
+    margin-bottom: 7px;
+}
+.Cadre .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
+    padding: 0;
+    padding-bottom: 5px;
 }
 
 .Cadre form .form textarea{
@@ -122,12 +128,34 @@ font-family: sans-serif;
     height: 60px;
     width: 90%;
 }
+.Cadre form .form input{
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-left: 7px;
+    height: 40px;
+    width: 90%;
+}
 .Cadre .piedcadre{
    
     padding-top: 10px;
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
 }
-.Cadre form .piedcadre  button{
+.Cadre form .piedcadre  .notposible{
+    align-items: center;
+    border: none;
+    font-weight:600 ;
+    margin-left: 20%;
+    padding: 2px;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 5px;
+    color: #aaaaaa;
+    background-color: #dddddd;
+    cursor: not-allowed;
+    
+}
+.Cadre form .piedcadre  .posible{
     align-items: center;
     border: none;
     font-weight:600 ;
@@ -139,9 +167,10 @@ font-family: sans-serif;
     margin-bottom: 5px;
     color: white;
     background-color: #0861f2;
+    cursor: pointer;
     
 }
-.Cadre form .piedcadre  button:hover{
+.Cadre form .piedcadre  .posible:hover{
     background-color: #0862f280;
     transform: scale(1.1);
 }
@@ -314,4 +343,10 @@ font-family: sans-serif;
     text-align: center;
     font-size: small;
    
+}
+.Mobile{
+
+    position: fixed;
+    width: 100%;
+    display: none;
 }

@@ -1,0 +1,90 @@
+.SidbarAdmin{
+    height: 100%;
+    width: 100%;
+    background-color: #212631;
+    overflow: hidden;
+ 
+}
+.SidbarAdmin .header{
+    position: relative;
+    width: 100%;
+    height: 65px;
+    padding-top: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.37);
+}
+.SidbarAdmin .header img{
+    width: 70%;
+    height: 100%;
+}
+.SidbarAdmin .header .close{
+    display: none;
+}
+.SidbarAdmin .body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #212631;
+
+}
+.SidbarAdmin .body .link{
+    padding: 10px;
+    margin-left: 10px;
+    width: 100%;
+    text-decoration: none;
+    color: #FFFFFFDE;
+    font-size: 16px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin:4px;
+    display: flex;
+}
+.SidbarAdmin .body .link .icon{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: -2px;
+
+}
+.SidbarAdmin .body .link:hover{
+   border-radius:5px ;
+   border-top-left-radius:20px ;
+   border-bottom-left-radius:20px ;
+   background-color: rgba(212, 211, 211, 0.233);
+ 
+   
+ }
+ .SidbarAdmin .body .active::before{
+    content:"" ;
+    position: absolute;
+    right:0px;
+    top: 0;
+    padding: 0;
+    height: 100%;
+    width: 5px;
+    background-color: rgb(124, 160, 211);
+  }
+ .SidbarAdmin .body .active{
+    color: white;
+    border-top-left-radius:20px ;
+    border-bottom-left-radius:20px ;
+    background-color: rgba(212, 211, 211, 0.233);
+    position: relative;
+   
+}
+@media screen and (max-width:400px) {
+    .SidbarAdmin .header .close {
+        display: inline;
+        color: white;
+        z-index: 100;
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.1);
+        right: 5px;
+        top: 15px;
+        width: 40px;
+        height: 40px;
+        border:none ;
+        border-radius: 50px;
+    }
+}
+
+/* Ajoutez ce code à votre fichier CSS Sidbar.css */
+
+  

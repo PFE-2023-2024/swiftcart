@@ -3,11 +3,12 @@ import Navbar from 'react-bootstrap/Navbar';
 import React,{useState,useEffect } from 'react';
 import { IoAddOutline } from "react-icons/io5";
 import ListeBoutique from './ListeBoutique';
-import '../../Styles/HomeBoutique.css'
+import '../../Styles/BoutiqueStyles/HomeBoutique.css'
 import  Image  from '../../assets/images/Montassar Tayachi.png';
 import BoutiqueSideBar from './BoutiqueSideBar';
 import Formuler from './CreeBoutique/Formuler';
 import { FiMenu } from "react-icons/fi";
+import MobileForme from './CreeBoutique/MobileForme';
 function HomeBoutique(){
 
   const [menuList, setmenuList] = useState([]);
@@ -36,24 +37,19 @@ function HomeBoutique(){
     }
   };
   useEffect(() => {
-    relodedata();
-
-    // Add event listener for window resize
+    relodedata(); 
+  }, [menuList]);
+  
+  useEffect(() => {
     window.addEventListener('resize', handleWindowResize);
-
-    // Initial check for window width on component mount
     handleWindowResize();
-
-    // Remove event listener on component unmount
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
   }, []);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+  const [FormMobile, setFormMobile] = useState(false);
+  
   const [isSidebarleftOpen, setIsSideleftbarOpen] = useState(true);
 
   const toggleSideleftbar = () => {
@@ -61,16 +57,22 @@ function HomeBoutique(){
   };
 
   const toggleClose = () => {
+    setFormMobile(false);
     setIsSidebarOpen(false);
   };
   const toggleopen = () => {
-    setIsSidebarOpen(true);
+    if (window.innerWidth < 1300) {
+    setFormMobile(true);}
+    else{
+      setIsSidebarOpen(true)
+    }
   };
 
 
     return(
         <>
-        <Navbar expand="sm" className={` bg-white borderbuttom fixed-top ${isSidebarOpen ? 'falowpage' : ''  } `} >
+        {!FormMobile &&  <div>
+       <Navbar id='yy' className={` bg-white borderbuttom fixed-top ${isSidebarOpen ? 'falowpage' : ''  } `} >
       <Container>
         <div className='titrenavbarboutique'>
         <Navbar.Brand ><button className='addbutton2' onClick={toggleSideleftbar}><FiMenu /></button>  </Navbar.Brand>
@@ -79,7 +81,7 @@ function HomeBoutique(){
         
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text >
-            <button onClick={toggleSidebar} className='addbutton'><IoAddOutline size={30}></IoAddOutline></button>
+            <button onClick={toggleopen} className='addbutton'><IoAddOutline size={30}></IoAddOutline></button>
            
 			<img className="yy" src={Image}></img>
 			
@@ -87,13 +89,18 @@ function HomeBoutique(){
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>
-      <Navbar.Toggle className='navbarboggle'/>
+      
     </Navbar>
     <div className='coco' >
-   {isSidebarleftOpen && <div className={`si ${isSidebarOpen ? 'falowpage2' : ''  }`}><BoutiqueSideBar menuList={menuList}></BoutiqueSideBar></div>}
+   {!FormMobile&&isSidebarleftOpen && <div className={`si ${isSidebarOpen ? 'falowpage2' : ''  }`}><BoutiqueSideBar menuList={menuList}></BoutiqueSideBar></div>}
     <div className={`${isSidebarleftOpen ? 'se' :'se2'} ${isSidebarOpen ? 'falowpage2' : ''  }`}><ListeBoutique function1 ={toggleopen} menuList={menuList}></ListeBoutique></div>
-    {isSidebarOpen &&<Formuler function1 ={toggleClose}  ></Formuler>}
     </div>
+   
+        
+        </div>}
+        <div className='CarouselMobile'>  {FormMobile &&<MobileForme function1 ={toggleClose}  ></MobileForme>}</div>
+        {isSidebarOpen &&<Formuler function1 ={toggleClose}  ></Formuler>}
+   
         </>
     )
 }

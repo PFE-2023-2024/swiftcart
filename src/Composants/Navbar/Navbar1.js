@@ -18,7 +18,8 @@ function Navbar1() {
   };
   return (
     <>
-    <div className={`main-content ${isSidebarOpen ? 'blurred' : ''}`}>
+    <div className={` ${isSidebarOpen ? 'blurred' : ''}`}></div>
+    <div className={`main-content`}>
     <Navbar  expand="lg" bg="dark" data-bs-theme="dark">
       <Container className='Navbar'>
         <Navbar.Brand >SwiftCart</Navbar.Brand>

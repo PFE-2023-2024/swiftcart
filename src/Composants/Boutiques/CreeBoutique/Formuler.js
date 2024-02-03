@@ -1,6 +1,6 @@
-import React ,{useState}from "react";
+import React ,{useState,useEffect}from "react";
 import { IoIosClose } from "react-icons/io";
-import  '../../../Styles/FormulerBoutique.css';
+import  '../../../Styles/BoutiqueStyles/FormulerBoutique.css';
 import { CgScreen } from "react-icons/cg";
 import { FaMobileScreen } from "react-icons/fa6";
 import cover from '../../../assets/images/cover.png';
@@ -8,8 +8,10 @@ import profile from '../../../assets/images/profile.png';
 import axios from 'axios';
 import AlertDismissible from "../../../Pieces/AlertSucess";
 import AlertDismissibleExample from "../../../Pieces/AlertDismissible";
+import TextField  from '@mui/material/TextField';
 function Formuler({function1}){
   const [show, setShow] = useState(false);
+  const [posible, setposible] = useState(false);
   const [show1, setShow1] = useState(false);
   const [stoppage, setStoppage] = useState(false);
   const [sizeFone, setsizeFone] = useState(false)
@@ -19,14 +21,14 @@ function Formuler({function1}){
   const ClosePhone = () => {
     setsizeFone(false);
   };
-    const [boutiqueInfo, setBoutiqueInfo] = useState({
-        nom: '',
-        categorie: '',
-        bio: '',
-        image1: null,
-        image2: null,
-      });
-    
+  const [boutiqueInfo, setBoutiqueInfo] = useState({
+    nom: '',
+    categorie: '',
+    bio: '',
+    image1: null,
+    image2: null,
+  });
+     
       const handleInputChange = (e) => {
         const { name, value } = e.target;
         setBoutiqueInfo((prevInfo) => ({
@@ -34,6 +36,18 @@ function Formuler({function1}){
           [name]: value,
         }));
       };
+      const Controle = () => {
+        if(boutiqueInfo.nom !='' && boutiqueInfo.categorie!='' ){
+        setposible(true);}
+        if(boutiqueInfo.nom =='' ||boutiqueInfo.categorie==''){
+          setposible(false);}
+        
+      };
+     useEffect(() => {
+      Controle(); 
+      }, [boutiqueInfo]);
+    
+        
     
       const handleFileChange = (e) => {
         const { name, files } = e.target;
@@ -48,8 +62,8 @@ function Formuler({function1}){
         setStoppage(true)
         const formData = new FormData();
         formData.append('path', '1/imageBoutique');
-        formData.append('files', boutiqueInfo.image1);
-        formData.append('files', boutiqueInfo.image2);
+        formData.append('files', boutiqueInfo.image1 );
+        formData.append('files', boutiqueInfo.image2 );
         formData.append('titre', boutiqueInfo.nom);
         formData.append('datePublication', new Date().toISOString());
         formData.append('categorie', boutiqueInfo.categorie);
@@ -94,10 +108,13 @@ function Formuler({function1}){
         </div>
         <h1>Créer une Boutique</h1>
         <p>Les internautes accèdent à votre Boutique pour en savoir plus sur vous. Veillez à y inclure toutes les informations dont ils pourraient avoir besoin.</p>
-        <form >
+        <form onSubmit={handleFormSubmit}>
       <div className="form">
         
-        <input
+        <TextField
+          required
+          className="TextField"
+          label="Nom Boutique"
           type="text"
           name="nom"
           value={boutiqueInfo.nom}
@@ -107,6 +124,7 @@ function Formuler({function1}){
         <p>Utilisez le nom de votre entreprise, marque ou organisation, ou un nom qui décrit votre Page</p>
 
         <select
+          required
           name="categorie"
           value={boutiqueInfo.categorie}
           onChange={handleInputChange}
@@ -131,6 +149,7 @@ function Formuler({function1}){
           value={boutiqueInfo.bio}
           onChange={handleInputChange}
           cols={3}
+          
           placeholder="Bio (facultatif)"
         />
         <p>Dites-en plus sur votre activité.</p>
@@ -143,7 +162,8 @@ function Formuler({function1}){
       </div>
 
       <div className="piedcadre">
-        <button  onClick={handleFormSubmit}>Créer une Boutique</button>
+        {posible?<button type="submit" className="posible" >Créer une Boutique</button>:
+        <button className="notposible">Créer une Boutique</button>}
         <p>
           En créant une Page, vous acceptez <a>les Règles relatives aux évènements, aux groupes et aux Pages</a>
         </p>
@@ -155,8 +175,8 @@ function Formuler({function1}){
     <div className={`${sizeFone ? 'affichage2' : 'affichage'} `}>
         <div className="affichageNav">
             <h1>Aperçu bureau</h1>
-            <div><button onClick={ClosePhone}><CgScreen size={25}/></button>
-            <button onClick={OpenPhone}><FaMobileScreen size={25}/></button></div>
+            <div>{<button onClick={ClosePhone}><CgScreen size={25}/></button>}
+            {<button onClick={OpenPhone}><FaMobileScreen size={25}/></button>}</div>
         </div>
 
         <div className="affichageprofile">
@@ -173,6 +193,7 @@ function Formuler({function1}){
         </div>
 
     </div>
+   
 
     </>)
 }

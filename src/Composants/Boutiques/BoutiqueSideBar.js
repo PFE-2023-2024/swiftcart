@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Nav from 'react-bootstrap/Nav';
-import '../../Styles/BoutiqueSideBar.css';
+import '../../Styles/BoutiqueStyles/BoutiqueSideBar.css';
 import { SlArrowRight } from "react-icons/sl";
 import { SlArrowDown } from "react-icons/sl";
 import CardBoutique2 from "../../Pieces/CardBoutique2";

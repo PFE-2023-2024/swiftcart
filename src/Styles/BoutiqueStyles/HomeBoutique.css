@@ -1,4 +1,6 @@
-
+.CarouselMobile{
+  top: 0;  width: 100%;
+}
 .addbutton{
     border-radius: 50%;
     border: none;
@@ -63,4 +65,9 @@
 }
 .yy{
     width: 30px;
+}
+@media screen and (max-width:330px) {
+  .titrenavbarboutique{
+    left: 10px;
+  }
 }
