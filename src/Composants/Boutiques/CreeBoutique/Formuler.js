@@ -1,4 +1,5 @@
 import React ,{useState,useEffect}from "react";
+import { API_BASE_URL } from '../../../config';
 import { IoIosClose } from "react-icons/io";
 import  '../../../Styles/BoutiqueStyles/FormulerBoutique.css';
 import { CgScreen } from "react-icons/cg";
@@ -69,7 +70,7 @@ function Formuler({function1}){
         formData.append('categorie', boutiqueInfo.categorie);
         formData.append('admin', 1);
         try {
-         const reponse= await axios.post('/insert/boutiques', formData, {
+         const reponse= await axios.post( API_BASE_URL+'/insert/boutiques', formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
             },

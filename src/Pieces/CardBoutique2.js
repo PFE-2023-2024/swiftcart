@@ -4,6 +4,7 @@ import image from '../assets/images/Boutique.jpg';
 import Rating from '@mui/material/Rating';
 import { FaStar } from 'react-icons/fa';
 import image2 from '../assets/images/profile.png';
+import { API_BASE_URL } from '../config';
 function CardBoutique2({list}) {
   const handleImageError2 = (e) => {
     e.target.src = image2; // Utilisation de l'image de remplacement
@@ -12,7 +13,7 @@ function CardBoutique2({list}) {
     <section className='cardBoutique2'>
       <div className='flex-container'>
       <div>
-          <img className='cardBoutiqueimage2' src={`${'/'+encodeURIComponent(list.imagemagazine)}`}onError={handleImageError2}/>
+          <img className='cardBoutiqueimage2' src={API_BASE_URL+`${'/'+encodeURIComponent(list.imagemagazine)}`}onError={handleImageError2}/>
         </div>
         <div className='vgvgvg'>
             

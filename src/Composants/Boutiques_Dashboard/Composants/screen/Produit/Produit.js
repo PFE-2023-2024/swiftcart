@@ -2,6 +2,7 @@ import React ,{useState,useEffect}from 'react';
 import '../../../../../Styles/Boutiques_Dashboard/Compoants/screen/Produit.css'
 import AjouterProduit from './AjouterProduit';
 import ListeProduit from './ListeProduit';
+import { API_BASE_URL } from '../../../../../config';
 
 function Produit(props) {
   const [menuList, setmenuList] = useState([]);
@@ -9,7 +10,7 @@ function Produit(props) {
   const relodedata = async () =>{
     let test=null
     try {            
-      const response = await fetch("/produit/boutiques/"+props.data.list.idboutique);
+      const response = await fetch( API_BASE_URL+"/produit/boutiques/"+props.data.list.idboutique);
       test = await response.json();
     } catch (err) {
       console.error(err.message);

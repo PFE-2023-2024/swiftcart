@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from "react";
 import axios from 'axios';
+import { API_BASE_URL } from '../../../config';
 import '../../../Styles/BoutiqueStyles/CreeBoutique2.css';
 import Autocomplete from '@mui/joy/Autocomplete';
 import cover from '../../../assets/images/cover.png';
@@ -36,7 +37,7 @@ function MobileForme({function1}) {
     const categorieSearche =async ()=> {
         let test=null
         try {            
-        const response = await fetch('/Categorie/boutiques/');
+        const response = await fetch( API_BASE_URL+'/Categorie/boutiques/');
         test = await response.json();
         
         } catch (err) {
@@ -122,7 +123,7 @@ function MobileForme({function1}) {
     formData.append('categorie', boutiqueInfo.categorie);
     formData.append('admin', 1);
     try {
-     const reponse= await axios.post('/insert/boutiques', formData, {
+     const reponse= await axios.post( API_BASE_URL+'/insert/boutiques', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

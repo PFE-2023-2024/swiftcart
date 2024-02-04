@@ -13,7 +13,7 @@ const Sidebar = ({ onClose }) => {
 			<h1 className='nameuser'>Montassar Tayachi </h1>
 		</div>
         <Nav.Link href="/link">Account</Nav.Link>
-		<Link to="/HomeBoutique">Orders</Link>
+		<Link to="/MALL-SHOPPING/HomeBoutique">Orders</Link>
 		
 		<Nav.Link href="/link">Recommendations</Nav.Link>
 		<Nav.Link href="/link">Browsing History</Nav.Link>

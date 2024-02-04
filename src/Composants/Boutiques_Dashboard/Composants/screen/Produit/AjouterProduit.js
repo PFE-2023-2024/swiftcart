@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import MultiStep from 'react-multistep';
 import TextField from '@mui/material/TextField';
+import { API_BASE_URL } from '../../../../../config';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -32,7 +33,7 @@ export default function AjouterProduit({close,data}) {
 
 const categorySearch = async () => {
     try {            
-        const response = await fetch('/categorie_produit/boutiques/' + encodeURIComponent(data.list.categorie));
+        const response = await fetch(API_BASE_URL+'/categorie_produit/boutiques/' + encodeURIComponent(data.list.categorie));
         const test = await response.json();
         setCategories(test);
     } catch (err) {
@@ -99,7 +100,7 @@ useEffect(() => {
     
 
     try {
-      const reponse= await axios.post('/insert/produit', Data, {
+      const reponse= await axios.post(API_BASE_URL+'/insert/produit', Data, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

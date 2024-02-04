@@ -9,13 +9,13 @@ function Sidbar({setToggle}){
     
     const menuItem=[
         {
-            path:"/Home/Dashboard",
+            path:"/MALL-SHOPPING/Home/Dashboard",
             name:"Dashboard",
             icon:<AiOutlineDashboard/>
         },
       
         {
-            path:"/Home/Produit",
+            path:"/MALL-SHOPPING/Home/Produit",
             name:"Product",
             icon:<FaShoppingBag/>
         },

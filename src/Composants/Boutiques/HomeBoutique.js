@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import React,{useState,useEffect } from 'react';
+import { API_BASE_URL } from '../../config';
 import { IoAddOutline } from "react-icons/io5";
 import ListeBoutique from './ListeBoutique';
 import '../../Styles/BoutiqueStyles/HomeBoutique.css'
@@ -17,7 +18,7 @@ function HomeBoutique(){
        const relodedata = async () =>{
               let test=null
               try {            
-                const response = await fetch("/boutiques/1");
+                const response = await fetch(API_BASE_URL+"/boutiques/1");
                 test = await response.json();
                 
               } catch (err) {

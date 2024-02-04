@@ -5,6 +5,7 @@ import image2 from '../assets/images/profile.png';
 import { FaInfoCircle } from "react-icons/fa";
 import { MdMessage  } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../config';
 function CardBoutique ({list}){
     const navigate = useNavigate();
     const dataFromHomeBoutique = {list };
@@ -15,14 +16,14 @@ function CardBoutique ({list}){
         e.target.src = image2; // Utilisation de l'image de remplacement
     };
     const navTo=()=>{
-        navigate('/Home', { state: { data: dataFromHomeBoutique } });
+        navigate('/MALL-SHOPPING/Home', { state: { data: dataFromHomeBoutique } });
     }
     return(
   
     <div onClick={navTo} className='cardBoutique'>
-        <img className='cardBoutiqueimage1' src={`${'/'+encodeURIComponent(list.imagecouverture)}`} onError={handleImageError}></img>
+        <img className='cardBoutiqueimage1' src={ API_BASE_URL+`${'/'+encodeURIComponent(list.imagecouverture)}`} onError={handleImageError}></img>
           
-        <img className='cardBoutiqueimage22'  src={`${'/'+encodeURIComponent(list.imagemagazine)}`}onError={handleImageError2}></img>
+        <img className='cardBoutiqueimage22'  src={ API_BASE_URL+`${'/'+encodeURIComponent(list.imagemagazine)}`}onError={handleImageError2}></img>
         <div className='notification'><ul>
         <li><MdMessage /> notification1</li>
             <li><MdMessage /> notification1</li>
