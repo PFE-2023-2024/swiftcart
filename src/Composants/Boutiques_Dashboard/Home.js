@@ -1,26 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 import '../../Styles/Boutiques_Dashboard/Home.css';
 import Navbar from "./Composants/Navbar";
 import Sidbar from "./Composants/SidBar";
-import { useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
-function Home({ children }) {
+
+export const DataContext = createContext();
+
+
+function Home() {
     const location = useLocation();
-
-    
-    const [staticVariable, setStaticVariable] = useState(() => {
-        const storedValue = localStorage.getItem('staticVariable');
-        return storedValue ? JSON.parse(storedValue) : null;
+    const [dataList, setDataList] = useState(() => {
+        const storedValue = localStorage.getItem("dataList");
+        return storedValue ? JSON.parse(storedValue) : location.state?.data?.list;
     });
-
-    useEffect(() => {
-        if (location.state && location.state.data && location.state.data !== staticVariable) {
-            setStaticVariable(location.state.data);
-           
-            localStorage.setItem('staticVariable', JSON.stringify(location.state.data));
-        }
-    }, [location.state, staticVariable]);
-
     const [toggle, setToggle] = useState(true);
 
     const toggleValue = () => {
@@ -39,22 +32,26 @@ function Home({ children }) {
         };
     }, []);
 
-    const childrenWithProps = React.Children.map(children, child => {
-        return React.cloneElement(child, { data: staticVariable });
-    });
-
+    useEffect(() => {
+        if (location.state?.data?.list) {
+            setDataList(location.state.data.list);
+            localStorage.setItem("dataList", JSON.stringify(location.state.data.list));
+        }
+    }, [location.state]);
     return (
-        <div className={`HomeAdmin_Dashborad ${toggle ? '' : 'close'}`}>
-            <div className="navbar">
-                <Navbar data={staticVariable?.list || location.state.data.list} setToggle={toggleValue} />
+        <DataContext.Provider value={dataList}>
+            <div className={`HomeAdmin_Dashborad ${toggle ? '' : 'close'}`}>
+                <div className="navbar">
+                    <Navbar setToggle={toggleValue} />
+                </div>
+                <div className={`sidbar `}>
+                    <Sidbar setToggle={toggleValue} />
+                </div>
+                <div className="body">
+                    <Outlet />
+                </div>
             </div>
-            <div className={`sidbar `}>
-                <Sidbar setToggle={toggleValue} />
-            </div>
-            <div className="body">
-                <main>{childrenWithProps}</main>
-            </div>
-        </div>
+        </DataContext.Provider>
     );
 }
 

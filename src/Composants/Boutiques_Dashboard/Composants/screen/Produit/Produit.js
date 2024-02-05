@@ -1,20 +1,25 @@
-import React ,{useState,useEffect}from 'react';
-import '../../../../../Styles/Boutiques_Dashboard/Compoants/screen/Produit.css'
+import React, { useState, useEffect, createContext, useContext } from 'react';
+import '../../../../../Styles/Boutiques_Dashboard/Compoants/screen/Produit.css';
 import AjouterProduit from './AjouterProduit';
 import ListeProduit from './ListeProduit';
 import { API_BASE_URL } from '../../../../../config';
-
-function Produit(props) {
+import { DataContext } from '../../../Home';
+function Produit() {
   const [menuList, setmenuList] = useState([]);
+  const [toggle, setToggle] = useState(false);
 
-  const relodedata = async () =>{
-    let test=null
+  // Récupération de la valeur dataList à partir du contexte
+  const dataList = useContext(DataContext);
+  console.log(dataList);
+  const relodedata = async () => {
+    let test = null;
     try {            
-      const response = await fetch( API_BASE_URL+"/produit/boutiques/"+props.data.list.idboutique);
+      const response = await fetch(API_BASE_URL + "/produit/boutiques/" + dataList.idboutique);
       test = await response.json();
+      console.log(test);
     } catch (err) {
       console.error(err.message);
-      test = []; // Set a default value (empty array) in case of an error
+      test = [];
     }
     setmenuList(prevState => test);
   }
@@ -24,19 +29,18 @@ function Produit(props) {
   }, [menuList]);
   
 
-  const [toggle, setToggle] = useState(false);
-
-  function open(){
+  function open() {
     setToggle(true);
   }
   
-  function close(){
+  function close() {
     setToggle(false);
   }
 
   return (
-   <>
-    <div className='Produit'>
+    // Envelopper les enfants avec le DataProvider
+    <DataContext.Provider value={dataList}>
+      <div className='Produit'>
         <div className='Produitnav'>
           <div className='left'> Home / Produit</div>
           <div className='right'> 
@@ -44,18 +48,13 @@ function Produit(props) {
                 <button onClick={open}>Add Produit</button>
             </div>
          </div>
+        </div>
+        <main className='main'>
+          <ListeProduit data={menuList}></ListeProduit>
+        </main>
       </div>
-    <main className='main'>
-    <ListeProduit data={menuList}></ListeProduit>
-   
-
-    
-    </main>
-     
-    </div>
-    {toggle&&<AjouterProduit data={props.data} close={close}/>}
-   </>
-  
+      {toggle && <AjouterProduit data={dataList} close={close}/>}
+    </DataContext.Provider>
   );
 }
 

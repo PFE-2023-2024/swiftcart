@@ -28,12 +28,12 @@ export default function AjouterProduit({close,data}) {
   const handleOpen = () => {
     setOpen(true);
   };
-  
+ 
   const [categories, setCategories] = useState(null);
 
 const categorySearch = async () => {
     try {            
-        const response = await fetch(API_BASE_URL+'/categorie_produit/boutiques/' + encodeURIComponent(data.list.categorie));
+        const response = await fetch(API_BASE_URL+'/categorie_produit/boutiques/' + encodeURIComponent(data.categorie));
         const test = await response.json();
         setCategories(test);
     } catch (err) {
@@ -85,7 +85,7 @@ useEffect(() => {
     e.preventDefault();
     handleOpen();
     const Data = new FormData();
-    Data.append('path', '1/produit/'+data.list.idboutique);
+    Data.append('path', '1/produit/'+data.idboutique);
     for (const file of selectedFiles) {
       Data.append('files', file);  
   }
@@ -93,7 +93,7 @@ useEffect(() => {
     Data.append('description', formData.description);
     Data.append('prix', formData.price);
     Data.append('quantiteEnStock', formData.quantity);
-    Data.append('idBoutique', data.list.idboutique);
+    Data.append('idBoutique', data.idboutique);
     Data.append('categorie', formData.category);
     Data.append('deliveryCost', formData.deliveryCost);
     Data.append('variants', formData.variants);

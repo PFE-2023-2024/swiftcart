@@ -132,7 +132,7 @@ function Formuler({function1}){
           placeholder="Catégorie (obligatoire)"
         >
           <option placeholder="category">Alimentation</option>
-                    <option placeholder="category">Vêtements et Mode</option>
+                    <option placeholder="category">Vetements et Mode</option>
                     <option placeholder="category">Électronique</option>
                     <option placeholder="category">Magasin de meubles</option>
                     <option placeholder="category">Parfumerie</option>
