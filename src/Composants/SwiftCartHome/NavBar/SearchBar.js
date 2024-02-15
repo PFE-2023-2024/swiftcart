@@ -1,12 +1,14 @@
-
-import Button from "react-bootstrap/esm/Button";
-import "../Styles/search_bar.css";
+import React from 'react'
+import './Style/Navbar.css'
 import { CiSearch } from "react-icons/ci";
+
 function SearchBar() {
- 
-  return (
-    <a className="search">
-      <form>
+    const [open, setOpen] = React.useState(false);
+return (
+    <>
+       { open&& <div className='hverksj' onClick={()=>{setOpen(false)}}></div>}
+        <div className='SearchBar'>
+        <form className={`${open ? 'style1':''}`}>
         <select>
         <option placeholder="category">All</option>
         <option placeholder="category">Alimentation</option>
@@ -20,12 +22,13 @@ function SearchBar() {
         <option placeholder="category">Animaux de compagnie</option>
         <option placeholder="category">Autre</option>
         </select>
-      <input type="text" placeholder="search"></input> 
+        <input type="text"  onFocus={()=>{setOpen(true)}} placeholder="Search SwiftCart"></input> 
+        <button> <CiSearch /></button>
         </form> 
-      <button> <CiSearch size={30}  /></button>
-       
-    </a>
-  );
+      
+    </div>
+    </>
+  )
 }
 
-export default SearchBar;
+export default SearchBar

@@ -1,0 +1,217 @@
+.SignUp {
+    height: 100vh;
+    width: 100%;
+    background: #5c2235 url(https://cdn.shopify.com/shopifycloud/identity/assets/gradient/noise-ae0ab1628dee87591c6f6d3740b6e7e4e5109417e35a0781070d9d737f959e22.png);
+    background-size: 100px; /* ou la taille souhaitée */
+    background: -webkit-linear-gradient(to right, #040c1b, #072c0f, #aa4b6bfa), url(https://cdn.shopify.com/shopifycloud/identity/assets/gradient/noise-ae0ab1628dee87591c6f6d3740b6e7e4e5109417e35a0781070d9d737f959e22.png);
+    background: linear-gradient(to right, #1c1c2be8, #3b3b5cda, #26726fd3), url(https://cdn.shopify.com/shopifycloud/identity/assets/gradient/noise-ae0ab1628dee87591c6f6d3740b6e7e4e5109417e35a0781070d9d737f959e22.png);
+}
+.SignUp form {
+    width: 55%;
+    padding: 1%;
+    max-height: 100vh;
+    height: 90%;
+    background-color: white;
+    position: relative;
+    top:50%;
+    left:50%;
+    border-radius: 15px;
+    transform: translate(-50%,-50%);
+}
+.SignUp form .page{
+    position: relative;
+    width:100%;   
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+}
+.SignUp .page .header{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+}
+.SignUp  .header img{
+    height: 5rem;
+    width: 10rem;
+    margin-left: 1%px;
+}
+.SignUp .page  h1{
+font-size: 2rem;
+font-weight: bold;
+margin-top: -5%;
+margin-left: 2%;
+
+}
+.SignUp .page .TextField {
+    margin: 5px;
+    width: 100%;
+   
+}
+.SignUp .page .IputeName{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-right:2% ;
+    padding-left: 2%;
+    
+}
+.SignUp .page .IputeName .titre{
+    width: 49%;
+    
+}
+.SignUp .page .Email{
+    display: flex;
+    flex-direction: column;
+    padding-right:2% ;
+    padding-left: 2%;
+}
+.SignUp .page .input label{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+
+}
+.SignUp .page .button{
+    background: linear-gradient(to bottom, rgba(90, 89, 89, 0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(43, 40, 40, 0.4) 0%, rgba(0,0,0,0.40) 120%) #777272;
+    background-blend-mode: multiply,multiply;
+    border-radius: 7px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width:80%;
+    margin: 5px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 17px;
+    color: white;
+    font-weight: bold;
+   
+}
+.SignUp .page .button:hover{
+    background-color: rgba(8, 8, 8, 0.705);
+}
+.SignUp .page .text{
+
+width: 40%;
+text-align: center;
+margin-left:20px ;
+margin-right: 10%;
+position: relative;
+}
+.SignUp .page .text::before{
+    content: '';
+    width: 50%;
+    height: 1px;
+    background-color: rgb(82, 82, 97);
+    position: absolute;
+    left: -50%;
+    top: 50%;
+}
+.SignUp .page .text::after{
+    content: '';
+    width: 50%;
+    height: 1px;
+    background-color: rgb(82, 82, 97);
+    position: absolute;
+    right: -50%;
+    top: 50%;
+}
+.SignUp .page .reseauxsociaux {
+    margin: 5px;
+    display: flex;
+    width: 80%;
+    justify-content: space-around;
+}
+.SignUp .page .reseauxsociaux button{
+    padding: 7px;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid gray;
+    font-weight: 500;
+    font-size: 16px;
+    width: 50%;
+    margin: 2px;
+   
+}
+.SignUp .page .reseauxsociaux  .facebook{
+    color: #1d3469;
+}
+.SignUp .page .reseauxsociaux .google{
+    color: grey;}
+.SignUp .page .text{
+    color: rgba(128, 128, 128, 0.658);
+    font-size: 16px;
+    margin: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.SignUp .page .LinkForPassWordOublie{
+ position: relative;
+ font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+ margin: 0;
+color: #1d3469;
+ right:-25%;
+}
+.SignUp .page .Signuip{
+    display: flex;
+    color: rgb(141, 145, 148);
+}
+.SignUp .page .Signuip .link{
+    margin-left: 5px;
+    color: rgb(141, 145, 148);
+}
+.SignUp .page .Signuip p{
+    font-weight: 100;
+    padding-top: 2px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+@media screen and (max-width: 850px) {
+    .SignUp form {
+        width: 100%;
+        border-radius: 0px;
+        height:100%;
+
+    }
+    .Signuip  .input{
+        width: 100%;
+        padding: 10%;
+        background-color: #1d3469;
+    }
+    .SignUp .page .IputeName{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+       
+       
+        
+    }
+    .SignUp .page .IputeName .titre{
+       
+        margin: 0;
+        width: 100%;
+        
+    }
+    .SignUp{
+       
+    }
+}
+.SignUp .validate{
+position: relative;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+display: flex;
+text-align: center;
+font-size: 0.9em;
+flex-direction: column;
+}
+.SignUp .validate p{
+
+    padding-left: 5%;
+    padding-bottom:5%;
+    padding-right: 5%;
+    padding-top:1% ;
+    text-align: center;
+    font-family: cursive;
+
+}

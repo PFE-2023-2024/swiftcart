@@ -1,0 +1,280 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
+.Navbar{
+    background: #232f3e ;
+    border-bottom: 1px solid #232f3e;
+    width: 100%;
+    height: 60px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+.Navbar .left{
+ margin-left:1%;
+ width: 20%;
+}
+.Navbar .left .logo{
+    height: 100%;
+    font: 1em sans-serif;
+    color: white;
+}
+.Navbar .left .logo img{
+   height: 100%;
+   margin-left: 20%;
+
+}
+.Navbar .right{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 20%;
+    margin-right: 5%;
+   height: 100%;
+   display: flex;
+   -webkit-box-align: center;
+       -ms-flex-align: center;
+           align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
+
+} 
+.Navbar .right .toggel{
+    display: none;
+    /* display: flex; */
+    color: white;
+    font-size: 1.5rem;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
+    height: 100%;
+    color: white;
+    }
+ .right .Connexion{
+    text-decoration: none;
+    height: 70%;
+    margin-right: 5%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 4%;
+    color: #ffc107;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
+    font-size: 0.7rem;
+}  
+ .right .Commencer{
+    width: 6rem;
+    border: 0.2em solid #ffc107;
+    color: #ffc107;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 1em;
+    border-radius: 0.8em;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.7rem;
+} 
+ 
+
+.Navbar .body{
+    height: 100%;
+    width: 60%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
+}
+/* ///////////////////////////NavBar2//////////// */
+.Navbar2{
+    background: #232f3e ;
+    border-bottom: 1px solid #232f3e;
+    width: 100%;
+    height: 120px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+}
+.Navbar2 .top{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+.Navbar2 .top .left .logo img{
+    height: 50%;
+}
+.Navbar2 .body{
+    height: 100%;
+    width: 80%;
+    margin-top: -1%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
+}
+.Navbar2 .right{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-right: 5%;
+   height: 100%;
+   display: flex;
+   -webkit-box-align: center;
+       -ms-flex-align: center;
+           align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
+
+} 
+/* /////////////////////////////////// */
+.SearchBar{  
+    width: 100%;
+
+    color: aliceblue;
+    height: 70%;
+    }
+.SearchBar form{
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
+}
+.SearchBar form:hover{
+    border: 3px solid #ffc107;
+    border-radius: 10px;
+}
+.SearchBar .style1{
+    border: 3px solid #ffc107;
+    border-radius: 10px;
+}
+.SearchBar select{
+    background-color:whitesmoke;
+    width: 20%;
+    height: 99%;
+    border: none;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius:5px ;
+}
+.SearchBar input[type="text"]:focus {
+    outline: none; /* Remove default focus outline */
+    /* Adjust padding for better appearance */
+}
+
+.SearchBar input {
+    border: none;
+    padding: 2%;
+    width:70% ;
+    height: 99%;
+    max-height: 99%;
+}
+.SearchBar button{
+    background-color:#ffc107;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius:5px ;
+    border: none;
+    height: 99%;
+    width: 10%;  
+    font-size: 1.5em;
+}
+
+.hverksj{
+    background-color: rgba(0, 0, 0,0.2);
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    top:60px;
+    left: 0;
+    height: 100vh;
+}
+@media screen and (max-width: 800px) {
+    .SearchBar select{
+       display: none;
+    }
+    .SearchBar input {
+        border-bottom-left-radius: 5px;
+        border-top-left-radius:5px ;
+        width:80% ;
+      
+    }
+    .SearchBar button{
+       
+        width: 20%;  
+       
+    }
+}
+.homeMenu{
+    display: flex;
+    align-items: center;
+    width: auto;
+    background-color: transparent;
+    box-shadow: 1px 2px 2px rgba(255, 255, 255, 0.479);
+    padding: 0.2em;
+}
+.homeMenu h1{
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: white;
+    margin-left: 0.3rem;
+}
