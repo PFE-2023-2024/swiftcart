@@ -3,8 +3,10 @@ import './Style/Security.css';
 import Devices from './Devices';
 import EditPassword from './EditPassword';
 import CreatePassword from './CreatePassword';
+import {useUser} from '../../Context/UserProvider';
 function Security() {
-  const [Password, setPassword] = useState(true);
+  const { userInfo, setUserInfo } = useUser(); 
+  const [Password, setPassword] = useState(userInfo.password===null?true:false);
   const[open,setOpen]=useState(false);
   const[open2,setOpen2]=useState(false);
   return (

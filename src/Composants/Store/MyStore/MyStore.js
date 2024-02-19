@@ -53,4 +53,4 @@ function MyStore() {
   )
 }
 
-export default MyStore
+export default MyStore; // And similarly for the other components

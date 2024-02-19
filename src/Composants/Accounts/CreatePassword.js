@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { CgClose } from "react-icons/cg";
 import Backdrop from '@mui/material/Backdrop';
+import { MdReportGmailerrorred } from "react-icons/md"; 
 import { TextField, IconButton } from '@mui/material';
 import { Label, Visibility, VisibilityOff } from '@mui/icons-material';
 import './Style/EditPassword.css';
+import {API_BASE_URL} from '../../config';
 function CreatePassword({ open1, onClose }) {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -11,7 +13,7 @@ function CreatePassword({ open1, onClose }) {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   
-
+  const [error, seterror] = useState('');
   const [errornewPassword, seterrornewPassword] = useState('');
   const [errorconfirmPassword, seterrorconfirmPassword] = useState('');
  
@@ -43,14 +45,29 @@ function CreatePassword({ open1, onClose }) {
     return isValid;
 };
   const handleSubmit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
     if (!validate()) {
+      
      
       return;
     }
-    
-    
-    onClose(); 
+    try {
+      const repance = fetch(API_BASE_URL+'/credentials/set_password', {
+        method: 'put',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({
+          password: newPassword
+        })
+      });
+      console.log(repance);
+     window.location.reload();
+    } catch (error) {
+      seterror(error.response.data.message);
+      console.error('Error:', error);
+    }
   };
 
   return (
@@ -61,6 +78,9 @@ function CreatePassword({ open1, onClose }) {
           <button onClick={onClose}><CgClose /></button>
         </div>
         <div className="body">
+        {error.trim()&&<div className="erreur">
+            <p><MdReportGmailerrorred />{error}</p>
+          </div>}
           <form onSubmit={handleSubmit}>
            
            <div className='Input'>

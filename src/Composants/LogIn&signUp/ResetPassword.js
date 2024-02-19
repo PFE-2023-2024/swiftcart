@@ -63,7 +63,7 @@ function ResetPassword() {
                 setOpen(true);
                 const response = await axios.put(API_BASE_URL+'/authentication/forgot_password', {token,password});
                 console.log('Registration successful:', response);
-                localStorage.setItem("token", JSON.stringify(response.data.token));
+                localStorage.setItem("token", response.data.token);
                 navigate('/Swiftcart');
             } catch (error) {
                 if (error.response && error.response.data && error.response.data.message) {

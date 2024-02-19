@@ -5,6 +5,7 @@ import "./Style/General.css"
 import Edit from './Edit';
 import {useUser} from '../../Context/UserProvider';
 import { Link } from "react-router-dom";
+import profile from '../../assets/images/profile.png';
 function General() {
   const [editType, setEditType] = useState(null);
   const closeEditModal = () => setEditType(null);
@@ -25,7 +26,7 @@ function General() {
         <h2>Details</h2>
         <div className='Form'>
            <div className='changePhoto'>
-              <img  src={userInfo.image}></img>      
+              <img  src={userInfo.image ||profile}></img>      
               <button onClick={() => setEditType('image')}>Update photo</button>
            </div>
           <div className='changerName'>

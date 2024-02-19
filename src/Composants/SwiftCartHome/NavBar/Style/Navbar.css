@@ -25,10 +25,12 @@
     height: 100%;
     font: 1em sans-serif;
     color: white;
+    display: flex;
+    align-items: center;
 }
 .Navbar .left .logo img{
-   height: 100%;
-   margin-left: 20%;
+   height: 80%;
+   margin-left: 10%;
 
 }
 .Navbar .right{
@@ -267,14 +269,27 @@
 .homeMenu{
     display: flex;
     align-items: center;
-    width: auto;
-    background-color: transparent;
-    box-shadow: 1px 2px 2px rgba(255, 255, 255, 0.479);
-    padding: 0.2em;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 0.5em;
+    background-color:  #46525f ;
+    padding-left: 0.2em;
+   
+  
+}
+.homeMenu img{
+    width: 40px;
+    width: 40px;
+    border-radius: 0.5em;
+    margin-left: 0.5em;
+    margin-right: 0;
 }
 .homeMenu h1{
     font-size: 0.9rem;
     font-weight: 600;
-    color: white;
+    color: rgb(230, 230, 230);
     margin-left: 0.3rem;
+    margin: 0.1em;
+    max-width: 100px;
+    overflow: hidden;
 }

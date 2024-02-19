@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { CgClose } from "react-icons/cg";
 import Backdrop from '@mui/material/Backdrop';
+import { MdReportGmailerrorred } from "react-icons/md"; 
 import { TextField, IconButton } from '@mui/material';
 import { Label, Visibility, VisibilityOff } from '@mui/icons-material';
 import './Style/EditPassword.css';
+import {API_BASE_URL} from '../../config'
 function EditPassword({ open1, onClose }) {
   const [password, setPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -11,7 +13,7 @@ function EditPassword({ open1, onClose }) {
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  
+  const [error, setError] = useState('');
   const [errorCurrentPassword, setErrorCurrentPassword] = useState('');
   const [errornewPassword, seterrornewPassword] = useState('');
   const [errorconfirmPassword, seterrorconfirmPassword] = useState('');
@@ -52,15 +54,30 @@ function EditPassword({ open1, onClose }) {
 
     return isValid;
 };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) {
      
       return;
     }
-    
-    
-    onClose(); 
+    const old_password = password;
+    const new_password = newPassword;
+    try {
+      const reponce= await fetch(API_BASE_URL+'/credentials/change_password', {
+        method: 'put',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `${localStorage.getItem('token')}`,
+        },
+        body: JSON.stringify({ old_password, new_password}),
+      
+      });
+      window.location.reload();
+
+    } catch (error) {
+      setError(error.response.data.message);
+      console.log(error);
+    }
   };
 
   return (
@@ -71,6 +88,9 @@ function EditPassword({ open1, onClose }) {
           <button onClick={onClose}><CgClose /></button>
         </div>
         <div className="body">
+        {error.trim()&&<div className="erreur">
+            <p><MdReportGmailerrorred />{error}</p>
+          </div>}
           <form onSubmit={handleSubmit}>
             <div className='Input'>
             <label>Current Password</label>

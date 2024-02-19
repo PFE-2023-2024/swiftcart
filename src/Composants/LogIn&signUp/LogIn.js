@@ -87,11 +87,9 @@ function LogIn() {
    
       try {
         setOpen(true)
-        const response = await axios.post(API_BASE_URL+'/authentication/login', { email, password }); // Envoyer les informations d'identification à l'API
-        console.log('Login successful:', response);
-      
-         localStorage.setItem("token", JSON.stringify(response.data.token));
-         navigate('/Swiftcart');
+        const response = await axios.post(API_BASE_URL+'/authentication/login', { email, password }); // Envoyer les informations d'identification à l'API     
+        localStorage.setItem("token",response.data.token)
+        navigate('/Swiftcart');
       } catch (error) {
         setErrorAlert(true);
         console.error('Login error:', error.response);
@@ -222,7 +220,7 @@ function getGoogleOAuthURL() {
                 />
               </FormControl>
             </div>
-            <button  onClick={handleSubmit} className='button'>           
+            <button type='button' onClick={handleSubmit} className='button'>           
               LogIn
             </button>
             <Link className='LinkForPassWordOublie' to={"/Swiftcart/ForgotPassword"}>Forgot your password ?</Link>

@@ -1,0 +1,92 @@
+/* FILEPATH: /C:/Users/monta/Desktop/PFE/Code/swiftcart/src/Composants/Store/StoreManagement/Composants/Setting/Setting.css */
+
+/* Styles for the Setting component */
+.setting {
+    padding-left: 5em;
+    margin-top: 1em;
+}
+
+.setting-title {
+  /* Add styles for the title */
+}
+.setting-title h2{
+    font-size: 1.5em;
+    margin: 0;
+    font-size: 600;
+}
+.setting-content {
+ margin-top: 1.5em;   
+ background-color: white;
+ border-radius: 1em;
+ width: 80%;
+ padding: 1em;
+}
+.setting-content .Profile{
+    font-size: 1.5em;
+    margin: 0;
+    padding: 0;
+    border-radius: 0.5em;
+    border:0.05em solid #d6d6d6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.setting-content .Profile .ProfileHeader{
+    margin: 0;
+    border-top-left-radius: 0.4em;
+    border-top-right-radius: 0.4em;
+    background-color: #f2f2f2;
+    padding: 0.2em;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.setting-content .Profile .ProfileHeader button{
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0.1em;
+    color: rgb(110, 108, 108);
+    border: none;
+}
+.setting-content .Profile .ProfileHeader h2{
+    font-size: 0.8em;
+    margin: 0.1em;
+    color: rgb(110, 108, 108);
+}
+.setting-content .Profile .storename{
+   padding: 0.2em;
+   display: flex;
+   align-items: center;
+   width: 90%;
+   border-bottom: 0.05em solid #d6d6d6;
+}
+.setting-content .Profile .storename .uhucuchzeiuceiu{
+    font-size: 1.2em;
+    margin-right: 0.5em;
+    color: rgb(110, 108, 108);
+}
+.setting-content .Profile .storename h1{
+    font-size: 0.6em;
+    padding: 0;
+    margin: 0;
+    color: rgb(110, 108, 108);
+}
+
+
+.setting-button {
+  /* Add styles for the button */
+}
+@media screen and (max-width: 800px){
+    .setting {
+        padding-left: 1em;
+        margin-top: 1em;
+    }
+    .setting-content{
+        width: 100%;
+    }
+}

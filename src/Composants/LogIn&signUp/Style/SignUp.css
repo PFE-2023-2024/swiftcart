@@ -35,9 +35,11 @@
     
 }
 .SignUp  .header img{
-    height: 5rem;
-    width: 10rem;
-    margin-left: 1%px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    opacity: 0;
+    height: 3rem;
+    margin-left: 1%;
 }
 .SignUp .page  h1{
 font-size: 2rem;
@@ -193,6 +195,9 @@ color: #1d3469;
     }
     .SignUp{
        
+    }
+    .SignUp  .header img{
+        opacity: 1;
     }
 }
 .SignUp .validate{

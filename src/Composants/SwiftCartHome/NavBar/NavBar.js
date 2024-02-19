@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react';
-import swiftcart from '../../../assets/images/swiftcart/swiftcart.png';
+import swiftcart from '../../../assets/images/swiftcart/swiftcart01.png';
 import './Style/Navbar.css';
 import SearchBar from './SearchBar';
 import { Link } from 'react-router-dom';

@@ -3,7 +3,7 @@ import { BiUserCircle } from "react-icons/bi";
 import React from 'react';
 import './Style/Accounts.css';
 import image from '../../assets/images/swiftcart/swiftcart2.png';
-import image2 from '../../assets/images/Boutique.jpg'
+import Profile from '../../assets/images/profile.png'; 
 import { NavLink } from 'react-router-dom';
 import { Outlet } from "react-router-dom";
 import {useUser} from '../../Context/UserProvider';
@@ -14,7 +14,7 @@ function Accounts() {
         <div className='nav'>
             <img src={image}></img>
             <div className='nav-text'>
-                <img src={userInfo.image}></img>  
+                <img src={userInfo.image||Profile}></img>  
             <h1>{userInfo.first_name}</h1>
             </div>
         </div>

@@ -29,6 +29,19 @@
 background-color: transparent;
 padding: 0.9rem;
 }
+.EditName .body .erreur{
+    background-color: rgba(245, 202, 202, 0.719);
+    border: 0.1em solid rgba(238, 136, 136, 0.815);
+    border-radius: 0.5em;
+    font-size: 0.8em;
+    margin-top: 0.5em;
+    padding: 0.5em;
+}
+.EditName .body .erreur p{
+    color: rgb(138, 0, 0);
+    font-size: 1.2em;
+    font-weight: 500;
+}
 .EditName .body h5{
     font-size: 1em;
     color: black;

@@ -10,7 +10,7 @@ function EmailVerification() {
         const fetchData = async () => {
             try {
                 const response = await axios.post(API_BASE_URL + '/authentication/verify_email', { token });
-                localStorage.setItem("token", JSON.stringify(response.data.token));
+                localStorage.setItem("token", response.data.token);
                 console.log(response);
                 navigate('/Swiftcart/');
             } catch (error) {
