@@ -2,8 +2,8 @@
   import { BiError } from "react-icons/bi"; 
   import { IoMdArrowRoundBack } from "react-icons/io"; 
   import React,{useEffect, useState} from 'react';
-  import { CKEditor } from '@ckeditor/ckeditor5-react';
-  import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+  import SunEditor from 'suneditor-react';
+  import 'suneditor/dist/css/suneditor.min.css';
   import TextField from '@mui/material/TextField';
   import DeleteIcon from '@mui/icons-material/Delete';
   import './AddProduct.css';
@@ -37,7 +37,7 @@ import { Link } from "react-router-dom";
       useEffect(() => { 
         
       const timeout =() => {
-        if ( title || stock || price || category || deliveryPrice || editorState || selectedFiles.length > 0) {
+        if ( title || stock || price || category || deliveryPrice || editorState.trim() || selectedFiles.length > 0) {
         setOpen(true);
         } else {
           setOpen(false);
@@ -48,9 +48,8 @@ import { Link } from "react-router-dom";
         
       }, [title, stock, price, category, deliveryPrice, editorState, selectedFiles]);
       
-      const handleEditorChange = (event, editor) => {
-        const data = editor.getData();
-        setEditorState(data);
+      const handleEditorChange = (content) => {
+        setEditorState(content);
       };
     
       const handleFileChange = (e) => {
@@ -104,18 +103,18 @@ import { Link } from "react-router-dom";
           selectedFiles.forEach((file, index) => {
             formData.append(`images[${index}]`, file);
           });
-
-          fetch(`${API_BASE_URL}/products`, {
-            method: 'POST',
-            headers: {
-              'Authorization': `${localStorage.getItem('token')}`
-            },
-            body: formData,
-          })
-          .then(response => response.json())
-          .then(data => console.log(data))
-          .catch(error => console.error('Error:', error));
-        };
+          console.log(title, category.title, stock, price, deliveryPrice, editorState);  
+        //   fetch(`${API_BASE_URL}/products`, {
+        //     method: 'POST',
+        //     headers: {
+        //       'Authorization': `${localStorage.getItem('token')}`
+        //     },
+        //     body: formData,
+        //   })
+        //   .then(response => response.json())
+        //   .then(data => console.log(data))
+        //   .catch(error => console.error('Error:', error));
+         };
         
       
       return (
@@ -153,11 +152,26 @@ import { Link } from "react-router-dom";
               </div>        
               <div>
               <label htmlFor="description">Description</label>
-              <CKEditor
-                  editor={ ClassicEditor }
-                  data={editorState}
-                  onChange={handleEditorChange}       
-              />
+                      <div className="SunEditor">
+                      <SunEditor
+                setOptions={{
+                    buttonList: [
+                        ['undo', 'redo'],
+                        ['font', 'fontSize', 'formatBlock'],
+                        ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
+                        ['fontColor', 'hiliteColor', 'textStyle'],
+                        ['removeFormat'],
+                        ['align', 'horizontalRule', 'list', 'table','link'],
+                        ['fullScreen', 'showBlocks', 'codeView'],
+                        ['preview', 'print'],
+                    ]
+                }}
+                
+                onChange={handleEditorChange}
+                setContents={editorState}
+               
+            />
+                      </div>
               <p>Describe the product in detail, including its features, benefits and uses.</p>
               </div>
           </div>   

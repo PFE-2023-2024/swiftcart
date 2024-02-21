@@ -81,15 +81,17 @@ function LogIn() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorAlert(false);
     if(!validate()){
       return;
     }
+    setOpen(true)
    
       try {
-        setOpen(true)
+       
         const response = await axios.post(API_BASE_URL+'/authentication/login', { email, password }); // Envoyer les informations d'identification à l'API     
         localStorage.setItem("token",response.data.token)
-        navigate('/Swiftcart');
+        window.location.href='/Swiftcart';
       } catch (error) {
         setErrorAlert(true);
         console.error('Login error:', error.response);
@@ -123,21 +125,21 @@ function getGoogleOAuthURL() {
 }
 
   return (<>
-      <Backdrop
+    { errorAlert && <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={errorAlert}
+        open={true}
       >
-        <Alert className='alert' variant="danger" onClose={() => setErrorAlert(false)} dismissible>
+        <Alert className='alert' variant="danger" onClose={() => {setErrorAlert(false);}} dismissible>
         <Alert.Heading>The connection failed.</Alert.Heading>
         <p>
         Please check your credentials and try again. If the problem persists, please contact technical support for assistance.
         </p>
       </Alert>
        
-      </Backdrop>
+      </Backdrop>}
 
       <Backdrop
-        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 2 }}
         open={open}
       >
         <CircularProgress color="inherit" />

@@ -113,7 +113,18 @@
 .AddProduct .Save .button  .Saveb{
     background-color: #269141;
 }
+.css-7sdsh2-MuiAutocomplete-root .MuiOutlinedInput-root {
+    padding: 0px !important;
+}
+.AddProduct .SunEditor{
+    max-height: 300px;
+    overflow: auto;
 
+}
+.AddProduct .SunEditor p{
+  color: black;
+  font-size: 11px;
+}
 .AddProduct   .Uploadimages{
     position: relative;
     flex-direction: column;

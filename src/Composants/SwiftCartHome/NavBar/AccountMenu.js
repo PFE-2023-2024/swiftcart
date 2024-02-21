@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useUser } from '../../../Context/UserProvider';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -12,11 +11,12 @@ import Tooltip from '@mui/material/Tooltip';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined';
+import image from '../../../assets/images/profile.png'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import './Style/Navbar.css';
 
-export default function AccountMenu() {
-  const { userInfo } = useUser();
+export default function AccountMenu({userInfo}) {
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const navigate = useNavigate();
@@ -47,8 +47,8 @@ export default function AccountMenu() {
             aria-expanded={open ? 'true' : undefined}
           >
             <div className='homeMenu'>
-              <h1>{userInfo.first_name}</h1>
-              <img src={userInfo.image} alt="User profile" />
+              <h1>{userInfo.first_name || 'UserName'}</h1>
+              <img src={userInfo.image  ||image} alt="User profile" />
             </div>
           </IconButton>
         </Tooltip>
@@ -66,9 +66,6 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem component={Link} to="/profile">
-          <Avatar /> Profile
-        </MenuItem>
         <MenuItem component={Link} to="/Swiftcart/MyStores">
           <ListItemIcon>
             <StorefrontOutlinedIcon fontSize="small" />

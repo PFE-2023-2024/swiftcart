@@ -24,18 +24,28 @@
     height: 60%;
     
 }  
+.Accounts .nav .Dropdown{
+    height: 80%;
+    background-color: transparent;
+}
 .Accounts .nav .nav-text{
     display: flex;
     flex-direction: row;
     align-items: center;
+    background-color: transparent;
+    color: black;
+    border: none;
     text-align: center;
     justify-content: center;
     height: 100%;
     margin-right: 1em;
+}
+.Accounts .nav .nav-text:active{
+    background-color: transparent;
 }   
 .Accounts .nav .nav-text img{
     border-radius: 0.5em;
-    height: 50%;
+    height: 100%;
 }
 .Accounts .nav .nav-text h1{
     font-size: 1em;

@@ -4,19 +4,36 @@ import React from 'react';
 import './Style/Accounts.css';
 import image from '../../assets/images/swiftcart/swiftcart2.png';
 import Profile from '../../assets/images/profile.png'; 
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { Outlet } from "react-router-dom";
 import {useUser} from '../../Context/UserProvider';
+import Dropdown from 'react-bootstrap/Dropdown';
 function Accounts() {
-  const { userInfo, setUserInfo } = useUser(); 
+  const { userInfo, setUserInfo } = useUser();
+  const navigate = useNavigate(); 
+  const logout = () => {
+    localStorage.removeItem("token");
+    window.location.href='/swiftcart/login'; // Navigate to login or home page after logout
+  };
   return (
     <div className='Accounts'>
         <div className='nav'>
             <img src={image}></img>
-            <div className='nav-text'>
+            <Dropdown className='Dropdown'>
+              <Dropdown.Toggle className='nav-text' >
+              
                 <img src={userInfo.image||Profile}></img>  
             <h1>{userInfo.first_name}</h1>
-            </div>
+           
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={()=>{navigate('/Swiftcart/MyStores')}}>My stores</Dropdown.Item>
+                <Dropdown.Item onClick={()=>{navigate('/Swiftcart/')}} >Home</Dropdown.Item>
+                <Dropdown.Item onClick={logout}> Disconnect</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            
         </div>
         <div className='sidbar'>
             <NavLink className={'Link'} to={'General'} activeClassName='active' ><BiUserCircle  className="icon" />General</NavLink>

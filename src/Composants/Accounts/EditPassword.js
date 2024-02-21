@@ -63,7 +63,7 @@ function EditPassword({ open1, onClose }) {
     const old_password = password;
     const new_password = newPassword;
     try {
-      const reponce= await fetch(API_BASE_URL+'/credentials/change_password', {
+      const reponce= await(await fetch(API_BASE_URL+'/credentials/change_password', {
         method: 'put',
         headers: {
           'Content-Type': 'application/json',
@@ -71,7 +71,11 @@ function EditPassword({ open1, onClose }) {
         },
         body: JSON.stringify({ old_password, new_password}),
       
-      });
+      })).json();
+      if(!reponce.success){
+      setError('Invalid password');
+      return;
+      }
       window.location.reload();
 
     } catch (error) {

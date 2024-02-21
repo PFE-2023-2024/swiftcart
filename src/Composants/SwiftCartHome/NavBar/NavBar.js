@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom';
 import Backdrop from '@mui/material/Backdrop';
 import Sidebar from '../SidBar/SidBar';
 import AccountMenu from './AccountMenu';
+import { useUser } from '../../../Context/UserProvider';
 function NavBar() {
-
+  const { userInfo } = useUser();
   const [logIn, setLogIn] = useState(false);
   useEffect(() => {
     if(localStorage.getItem("token")){
@@ -59,7 +60,7 @@ function NavBar() {
             <Link className='Commencer' to ={'/Swiftcart/SignUp'}>Commencer</Link>
             </>:
             <div className='cybxzbxzb'>
-           <AccountMenu></AccountMenu> 
+           <AccountMenu userInfo={userInfo}></AccountMenu> 
             </div>}
               
         </div>
@@ -76,7 +77,7 @@ function NavBar() {
             <Link className='Commencer' to ={'/Swiftcart/SignUp'}>Commencer</Link>
             </>:
             <div className='cybxzbxzb'>
-           <AccountMenu></AccountMenu>
+           <AccountMenu userInfo={userInfo}></AccountMenu>
             </div>}
              
         </div>

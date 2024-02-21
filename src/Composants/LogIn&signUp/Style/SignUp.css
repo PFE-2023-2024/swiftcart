@@ -10,7 +10,7 @@
     width: 55%;
     padding: 1%;
     max-height: 100vh;
-    height: 90%;
+    height: auto;
     background-color: white;
     position: relative;
     top:50%;
@@ -204,7 +204,7 @@ color: #1d3469;
 position: relative;
 top: 50%;
 left: 50%;
-transform: translate(-50%,-50%);
+transform: translate(-50%,-30%);
 display: flex;
 text-align: center;
 font-size: 0.9em;

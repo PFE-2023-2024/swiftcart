@@ -1,0 +1,134 @@
+.EditImage{
+    background-color: white;
+    border-radius: 1rem;
+    margin: 1rem;
+}
+.EditImage .header{
+    border-top-right-radius:1rem ;
+    border-top-left-radius:1rem ;
+    width: 100%;
+    padding: 0.5em;
+    padding-bottom: 0;
+    background-color: whitesmoke;
+    display: flex;
+    padding: 0.8em;
+    justify-content: space-between;
+}
+.EditImage .header h1{
+    font-size: 1.2em;
+    padding: 0;
+    margin: 0;
+    color: black;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+}
+.EditImage .header button{
+    border: none;
+    background-color: transparent;
+    font-size: 1.2em;
+    position: relative;
+    top: -0.4em;
+    color: black;
+}
+.EditImage .body{
+background-color: transparent;
+padding: 0.9rem;
+}
+.EditImage .body .erreur{
+    background-color: rgba(245, 202, 202, 0.719);
+    border: 0.1em solid rgba(238, 136, 136, 0.815);
+    border-radius: 0.5em;
+    font-size: 0.8em;
+    margin-top: 0.5em;
+    padding: 0.5em;
+}
+.EditImage .body .erreur p{
+    color: rgb(138, 0, 0);
+    font-size: 1.2em;
+    font-weight: 500;
+}
+.EditImage .body h5{
+    font-size: 1em;
+    color: black;
+}
+
+.EditImage .body .button{
+    display: flex;
+    margin-top: 1em;
+    justify-content: flex-end;
+    width: 100%;
+  
+}
+.EditImage .body .image-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+    width: 100%;
+    position: relative;
+}
+.EditImage .body .image-container .cover{
+    width: 100%;
+    height: 100%;
+    max-height: 200px;
+    border-radius: 0.5em;
+}
+.EditImage .body .image-container .Profile {
+    position: absolute;    
+    bottom: 0;
+    left: 0;
+    transform: translate(25%,30%);
+    height: 60%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.1em solid #d6d6d6;
+}
+.EditImage .body .image-container .Profile img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.EditImage .body .image-container button{
+    position: absolute;
+    bottom:0;
+    right: 0;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    padding: 0.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.1em solid rgba(0, 0, 0, 0.322);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.EditImage .body .uuu{
+   color: black;
+   background-color: rgba(0, 0, 0, 0.103);
+}
+.EditImage .body .uuu label{
+    padding: 0.1em;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 0.1em solid rgba(0, 0, 0, 0.322);
+    font-size:1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}
+.EditImage .body .button button{
+   margin-top: 0.5em;
+   border-radius: 0.5em;
+   padding:  0.5em 1em;
+   border: 0.01em solid black;
+   background-color: #FFD814;
+   font-size:0.7em ;
+   font-weight: 600;
+}
+.EditImage .body .button button:hover{
+    background-color: #e6c211;
+}

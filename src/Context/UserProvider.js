@@ -1,10 +1,11 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import  {API_BASE_URL} from '../config';
+import { API_BASE_URL } from '../config';
+
 const UserContext = createContext();
+
 export const UserProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState({});
-
-
+  const [token, setToken] = useState(null);
 
   const decodePayload = (token) => {
     const base64Url = token.split('.')[1];
@@ -16,22 +17,29 @@ export const UserProvider = ({ children }) => {
   };
   
   const fetchUserData = async () => {
-    const token = localStorage.getItem('token');
     if (token) {
       const payload = decodePayload(token);
       try {
         const response = await fetch(API_BASE_URL + "/users/" + payload.user.id);
         const userData = await response.json();
         console.log(userData);
-       setUserInfo(prevState => ({ ...prevState, ...userData.user }));
+        setUserInfo(prevState => ({ ...prevState, ...userData.user }));
       } catch (err) {
         console.error(err.message);
       }
     }
   };
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    setToken(storedToken);
+    console.log(storedToken);
+  }, []); // Ajouter une dépendance vide pour éviter une boucle infinie
+
   useEffect(() => {
     fetchUserData();
-  });
+    console.log(token);
+  }, [token]); // Appeler fetchUserData uniquement lorsque le token change
 
   return (
     <UserContext.Provider value={{ userInfo, setUserInfo }}>
