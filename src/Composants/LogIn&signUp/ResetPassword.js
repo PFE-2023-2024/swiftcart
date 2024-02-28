@@ -133,11 +133,11 @@ function ResetPassword() {
                                             }}
                                             sx={{
                                                 '& .MuiInputBase-input': {
-                                                fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                                                fontSize: '15px',
-                                                padding: '10px'
+                                                  fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
+                                                 
+                                                  padding: '0.8rem 1rem'
                                                 },
-                                            }}
+                                              }}
                                         />
                                     
                                         <label>Confirm Your Password</label>
@@ -147,7 +147,6 @@ function ResetPassword() {
                                             placeholder="Confirm your password"
                                             value={confirmPassword}
                                             onChange={handleConfirmPasswordChange}
-                                            className='TextField'
                                             InputProps={{
                                                 endAdornment: (
                                                     <InputAdornment position='end'>
@@ -160,13 +159,13 @@ function ResetPassword() {
                                             error={confirmPasswordError}
                                                 helperText={confirmPasswordError && "The passwords do not match."}
                                                 
-                                            sx={{
-                                                '& .MuiInputBase-input': {
-                                                fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                                                fontSize: '15px',
-                                                padding: '10px'
-                                                },
-                                            }}
+                                                sx={{
+                                                    '& .MuiInputBase-input': {
+                                                      fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
+                                                     
+                                                      padding: '0.8rem 1rem'
+                                                    },
+                                                  }}
 
                                         />  
                                         

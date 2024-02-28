@@ -47,8 +47,8 @@ function General() {
             sx={{
                     '& .MuiInputBase-input': {
                       fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                      fontSize: '15px',
-                      padding: '10px'
+                      fontSize: '1rem',
+                      padding: ' 0.8rem  1.5rem'
                     },
                   }}></TextField> 
             </div>
@@ -65,13 +65,13 @@ function General() {
                   </IconButton>
                 </InputAdornment>
               ),
-            }}sx={{
-                    '& .MuiInputBase-input': {
-                      fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                      fontSize: '15px',
-                      padding: '10px'
-                    },
-                  }}></TextField>
+            }} sx={{
+              '& .MuiInputBase-input': {
+                fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
+                fontSize: '1rem',
+                padding: ' 0.8rem  1.5rem'
+              },
+            }}></TextField>
            </div>
           </div> 
           <div className='change'>
@@ -82,13 +82,12 @@ function General() {
                  disabled
                  value={userInfo.email}
                  sx={{
-                    '& .MuiInputBase-input': {
-                      fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                      fontSize: '15px',
-                      padding: '10px',
-                      border: 'none'
-                    },
-                  }}
+                  '& .MuiInputBase-input': {
+                    fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
+                    fontSize: '1rem',
+                    padding: ' 0.8rem  1.5rem'
+                  },
+                }}
                   ></TextField>
               </div>
               <button onClick={() => setEditType('email')}>Update</button>
@@ -102,12 +101,12 @@ function General() {
                 type='number'
                 value={userInfo.number||'no number'}
                 sx={{
-                    '& .MuiInputBase-input': {
-                      fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                      fontSize: '15px',
-                      padding: '10px'
-                    },
-                  }}></TextField> 
+                  '& .MuiInputBase-input': {
+                    fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
+                    fontSize: '1rem',
+                    padding: ' 0.8rem  1.5rem'
+                  },
+                }}></TextField> 
              </div> 
              <button>Update</button>
           </div>

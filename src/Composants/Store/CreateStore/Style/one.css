@@ -35,8 +35,11 @@
 .one .footer{
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     padding: 1rem;
+}
+.one .footer .uyxgzaiuhxiu{
+    display: flex;
 }
 .one .footer .next{
     display: flex;

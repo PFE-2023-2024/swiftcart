@@ -1,3 +1,4 @@
+import { BiImageAdd } from "react-icons/bi"; 
   import { BiUpload } from "react-icons/bi"; 
   import { BiError } from "react-icons/bi"; 
   import { IoMdArrowRoundBack } from "react-icons/io"; 
@@ -11,7 +12,10 @@
   import InputAdornment from '@mui/material/InputAdornment';
   import { FormControl, IconButton, ImageList, ImageListItem, ImageListItemBar } from "@mui/material";
   import Autocomplete from '@mui/material/Autocomplete';
+  import { SortableContainer, SortableElement ,sortableHandle, } from 'react-sortable-hoc';
+  import { CgArrowsExchangeAlt } from "react-icons/cg";
   import {API_BASE_URL} from '../../../../../../config';
+  import MediaConverter from '../../../../../../function/Media';
 import { Link } from "react-router-dom";
   function AddProduct() {
     const categories = [
@@ -53,9 +57,9 @@ import { Link } from "react-router-dom";
       };
     
       const handleFileChange = (e) => {
-          const files = Array.from(e.target.files);
-          setSelectedFiles(files);
-        };
+        const newFiles = Array.from(e.target.files); 
+        setSelectedFiles(prevFiles => [...prevFiles, ...newFiles]); 
+    };
       
       const handleDelete = (index) => {
           setSelectedFiles(selectedFiles.filter((file, i) => i !== index));
@@ -116,7 +120,72 @@ import { Link } from "react-router-dom";
         //   .catch(error => console.error('Error:', error));
          };
         
-      
+         const DragHandle = sortableHandle(() => <span><CgArrowsExchangeAlt /></span>);
+         const SortableItem = SortableElement(({ value, itemIndex }) => (
+          value.type.startsWith('video/') ? 
+          (
+            <ImageListItem key={itemIndex}  cols={itemIndex==0? 2:1} rows={itemIndex==0? 2:1}>
+            <video controls width={'100%'} height={'100%'} src={URL.createObjectURL(value)} />
+            <ImageListItemBar
+            title={value.name}
+            actionIcon={
+              <div style={{display:'flex',flexDirection:'row'}}>
+                <IconButton onClick={(event) => {
+                event.stopPropagation();
+                handleDelete(itemIndex);
+              }} sx={{ color: 'rgba(255, 255, 255, 0.54)' }}>
+                <DeleteIcon />
+              </IconButton>
+              <IconButton  className="xciao9898" >
+               <DragHandle />
+              </IconButton>
+              
+              </div>
+            }
+                    />
+          </ImageListItem>
+          ):
+          (
+            <ImageListItem key={itemIndex}   cols={itemIndex==0? 2:1} rows={itemIndex==0? 2:1}>
+            <img src={URL.createObjectURL(value)} alt={value.name} />
+            <ImageListItemBar
+            title={value.name}
+            actionIcon={
+              <div style={{display:'flex',flexDirection:'row'}}>
+                <IconButton onClick={(event) => {
+                event.stopPropagation();
+                handleDelete(itemIndex);
+              }} sx={{ color: 'rgba(255, 255, 255, 0.54)' }}>
+                <DeleteIcon />
+              </IconButton>
+              <IconButton  className="xciao9898" >
+               <DragHandle />
+              </IconButton>
+              
+              </div>
+            }
+                    />
+                </ImageListItem>)
+
+        
+       ));
+       
+     const SortableGrid = SortableContainer(({ items }) => {
+       return (
+         <ImageList  cols={3}>
+           {selectedFiles.map((value, index) => (
+             <SortableItem key={`item-${index}`} itemIndex={index} index={index}  value={value} />
+           ))}
+         </ImageList>
+       );
+     });
+     
+     const onSortEnd = ({ oldIndex, newIndex }) => {
+       
+         setSelectedFiles(MediaConverter.arrayMoveImmutable(selectedFiles, oldIndex, newIndex));
+        
+       };
+       
       return (
       <>
         <div className='AddProduct'>
@@ -140,13 +209,7 @@ import { Link } from "react-router-dom";
                       </InputAdornment>
                     ),
                   }}
-                  sx={{
-                      '& .MuiInputBase-input': {
-                          fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                          fontSize: '15px',
-                          padding: '10px'
-                        },
-                      }} 
+                 
                       /> 
                       <p>Enter the name of the product you want to add to the online store.</p>             
               </div>        
@@ -182,18 +245,12 @@ import { Link } from "react-router-dom";
               <Autocomplete
                 id="category"
                 options={categories}
-                getOptionLabel={(option) => option.title}
-                
+                getOptionLabel={(option) => option.title}                
                 renderInput={(params) => <TextField {...params}error={categoryError}  
                 helperText={categoryError ? "Category is required." : ""}
                 FormHelperTextProps={{ style: { color: 'red'}}}
                 placeholder="Choose a Category"/>}
                 freeSolo
-                value={category}
-                 onChange={(event, newValue) => {
-                setCategory(newValue);
-                }}
-              isOptionEqualToValue={(option, value) => option.title === value.title}
                 sx={{
                   '& .MuiInputBase-input': {
                     fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
@@ -201,6 +258,12 @@ import { Link } from "react-router-dom";
                     padding: '10px'
                   },
                 }}
+                value={category}
+                 onChange={(event, newValue) => {
+                setCategory(newValue);
+                }}
+              isOptionEqualToValue={(option, value) => option.title === value.title}
+               
               />
               <p>Select the category that best fits your product.</p>
         </div>  
@@ -214,13 +277,7 @@ import { Link } from "react-router-dom";
                   <TextField
                         type="number" name="stock"  value={stock} onChange={(e)=>{setStock(e.target.value)}}
                         placeholder="Quantity available"
-                        sx={{
-                          '& .MuiInputBase-input': {
-                            fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                            fontSize: '15px',
-                            padding: '10px'
-                          },
-                        }}/>
+                       />
                         <p>Specify the number of units available for this product.</p>
               </div>
               </div> 
@@ -230,13 +287,7 @@ import { Link } from "react-router-dom";
               <TextField
                   type="number"  name="price" value={price} onChange={(e)=>{setPrice(e.target.value)}} 
                   placeholder=" Enter the Product price."
-                  sx={{
-                    '& .MuiInputBase-input': {
-                      fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                      fontSize: '15px',
-                      padding: '10px'
-                    },
-                  }}/> 
+                 /> 
                   <p>Indicate the price of the product in local currency or any other unit of your choice.</p>     
               </div>
               <div className="Input input">
@@ -244,13 +295,7 @@ import { Link } from "react-router-dom";
                           <TextField
                           type="number"  name="price"  value={deliveryPrice} onChange={(e)=>{setDeliveryPrice(e.target.value)}}
                           placeholder="Enter the delivery price."
-                          sx={{
-                              '& .MuiInputBase-input': {
-                              fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                              fontSize: '15px',
-                              padding: '10px'
-                              },
-                          }} />
+                         />
                           <p>Specify the delivery price of the product in local currency or any other unit of your choice.</p>
               </div>        
             </div>
@@ -259,24 +304,14 @@ import { Link } from "react-router-dom";
         
               <label htmlFor="image">Media</label>
               <div className="Uploadimages">
+              {selectedFiles.length !== 0 &&   <div className="add"> <label  htmlFor="input-files"><BiImageAdd /> add</label></div>}
               <div className='images'>
-                      <ImageList cols={3}>
-                      {selectedFiles.map((file, index) => (
-                      <ImageListItem key={index}>
-                      <img src={URL.createObjectURL(file)} alt={file.name} />
-                      <ImageListItemBar
-                      title={file.name}
-                      actionIcon={
-                      <IconButton onClick={() => handleDelete(index)} sx={{ color: 'rgba(255, 255, 255, 0.54)' }}>
-                      <DeleteIcon />
-                      </IconButton>
-                      }
-                              />
-                          </ImageListItem>
-                          ))}
-                          </ImageList>
+              
+              <SortableGrid axis="xy" useDragHandle items={selectedFiles} onSortEnd={onSortEnd}  />
                           </div>   
-            {selectedFiles.length === 0 && <label className="input-files" htmlFor="input-files"><BiUpload />  upload Images</label>}
+            {selectedFiles.length === 0 && <div className="input-files"><label  htmlFor="input-files"><BiUpload />  upload new</label>
+            <p>
+            Accept images, videos,</p></div>}
                       <FormControl  sx={{ m: 1 }}>
                               <TextField
                               style={{display: 'none'}} 
@@ -284,7 +319,7 @@ import { Link } from "react-router-dom";
                               type="file"
                               multiple
                               onChange={handleFileChange}
-                              InputProps={{ inputProps: { multiple: true } }}
+                              InputProps={{ inputProps: { multiple: true ,accept:'image/*,video/*'} }}
                           /> 
                       </FormControl>
                     

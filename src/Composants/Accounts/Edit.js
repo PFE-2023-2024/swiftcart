@@ -127,7 +127,7 @@ const handleSaveImage = () => {
     }
   return (
   <>
-   {openCircularProgress && <Backdrop open={true} sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 2 }}>
+   {openCircularProgress && <Backdrop open={true} sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 4 }}>
         <CircularProgress color="inherit" />
       </Backdrop>}
       {openAlertSuccess && <Backdrop open={true} sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}>
@@ -241,7 +241,7 @@ const handleSaveImage = () => {
             <button onClick={handleButtonClick}><AiOutlineCamera/></button>
             <input
               id="jnxjsnjxn"
-              accept="image/*"
+              
               type="file"
               ref={fileInputRef}
               style={{display:'none'}}

@@ -1,14 +1,17 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import Backdrop from '@mui/material/Backdrop';
 import { CgClose } from "react-icons/cg";
 import { MdReportGmailerrorred } from "react-icons/md";
 import {  CircularProgress, TextField } from '@mui/material'; 
+import { AiOutlineClose } from "react-icons/ai"; 
 import { MuiTelInput } from 'mui-tel-input';
 import { isValidPhoneNumber } from 'libphonenumber-js';
-import './Style/EditProfile.css'
-function EditProfile({onClose}) {
+import {API_BASE_URL} from '../../../../../../config';
 
-    const [storeName, setStoreName] = React.useState('');
+import './Style/EditProfile.css'
+function EditProfile({onClose,name}) {
+
+    const [storeName, setStoreName] = React.useState(name);
     const [storePhone, setStorePhone] = React.useState('');
     const [storeEmail, setStoreEmail] = React.useState('');
     const [storeNameError, setStoreNameError] = React.useState('');
@@ -45,29 +48,46 @@ function EditProfile({onClose}) {
         }
         return isValid;
     }
+    const [open, setOpen] = React.useState(false);
+    useEffect(() => {
+      if (storeName !== name) {
+        setOpen(true);
+      }
+      else{
+        setOpen(false);
+      }
+    }, [storeName]);
+    const saveChanges = async () => {
+        if (!validate()) {
+          return; 
+          }
+          setLoading(true);
+        try {
+          const reponce = await fetch(`${API_BASE_URL}/stores`, {
 
-    const saveChanges = () => {
-        if (validate()) {
-            setLoading(true);
-            setError('');
-            // const data = {
-            //     storeName: storeName,
-            //     storePhone: storePhone,
-            //     storeEmail: storeEmail,
-            // }
-            // axios.post('http://localhost:3001/store/update', data)
-            // .then((res) => {
-            //     setLoading(false);
-            //     if (res.data.error) {
-            //         setError(res.data.error);
-            //     } else {
-            //         onClose();
-            //     }
-            // })
-            // .catch((err) => {
-            //     setLoading(false);
-            //     setError('Something went wrong');
-            // })
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+              name: storeName,
+              id:JSON.parse(localStorage.getItem('store')).id,
+            })
+          });
+         const res= await reponce.json();
+          if (res.success) {
+            setLoading(false);
+            localStorage.setItem('store',JSON.stringify(res.updated_stores[0]));
+            onClose();
+          }
+          else {
+            setLoading(false);
+            setError(res.message);
+          }
+        } catch (error) {
+          console.log(error);
+          setLoading(false);
         }
     }
   return (
@@ -83,6 +103,7 @@ function EditProfile({onClose}) {
         </div>
         <div className="body">
         {error.trim() && <div className="erreur">
+        <button onClick={()=>setError('')}><AiOutlineClose /></button> 
             <p><MdReportGmailerrorred />{error}</p>
           </div> }
           <h5>These details could be publicly available. Do not use your personal information.</h5>
@@ -138,7 +159,7 @@ function EditProfile({onClose}) {
               },
             }}
           ></TextField>
-          <div className="button"><button onClick={saveChanges}>Save Changes</button></div>
+         <div className="button"> {open ? <button onClick={saveChanges}>Save Changes</button>:<button style={{cursor:'not-allowed',background:'#d6d6d683',border:'none'}}>Save Changes</button>}</div>
        
         </div>
       </div>

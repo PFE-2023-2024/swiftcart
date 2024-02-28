@@ -24,8 +24,8 @@ function Stepfour({openPage3,openPage5,function1,paymentMethods}) {
   <div className='main'>
      
      <Checkbox   className={`Checkbox ${paymentMethods.delivery? ' do':''}`} label="Payment on delivery"name="delivery" checked={paymentMethods.delivery} onChange={handleChange} /> 
-     <Checkbox    className={`Checkbox ${paymentMethods.cash? 'do':''}`} label="Espèces" name="cash" checked={paymentMethods.cash} onChange={handleChange}/>       
-     <Checkbox   className={`Checkbox ${paymentMethods.bankTransfer? 'do':''}`} label="Virement bancaire" name="bankTransfer" checked={paymentMethods.bankTransfer} onChange={handleChange}/>
+     <Checkbox    className={`Checkbox ${paymentMethods.cash? 'do':''}`} label="Species" name="cash" checked={paymentMethods.cash} onChange={handleChange}/>       
+     <Checkbox   className={`Checkbox ${paymentMethods.bankTransfer? 'do':''}`} label="Bank transfer" name="bankTransfer" checked={paymentMethods.bankTransfer} onChange={handleChange}/>
      <Checkbox   className={`Checkbox ${paymentMethods.onlinePayment? 'do':''}`} label="Online payment" name="onlinePayment" checked={paymentMethods.onlinePayment} onChange={handleChange} />
   
         

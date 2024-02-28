@@ -5,7 +5,7 @@ import NavBar from './Composants/SwiftCartHome/NavBar/NavBar';
 import AuthenticationRoute from './routes/AuthenticationRoute';
 import StoresRoute from './routes/StoresRoute';
 import AccountsRoute from './routes/AccountsRoute';
-import MyGallery from './test';
+import MySortableGrid from './test';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
       <AccountsRoute/>
       <Routes >
         <Route path="/Swiftcart/" element={<NavBar />} /> 
-        <Route path="/Swiftcart/test" element={<MyGallery></MyGallery>} />
+        <Route path="/Swiftcart/test" element={<MySortableGrid></MySortableGrid>} />
       </Routes>
     </BrowserRouter>
   );

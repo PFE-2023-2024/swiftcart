@@ -1,14 +1,41 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import './Style/Security.css';
 import Devices from './Devices';
 import EditPassword from './EditPassword';
 import CreatePassword from './CreatePassword';
 import {useUser} from '../../Context/UserProvider';
+import {API_BASE_URL} from '../../config'
 function Security() {
   const { userInfo, setUserInfo } = useUser(); 
   const [Password, setPassword] = useState(userInfo.password===null?true:false);
   const[open,setOpen]=useState(false);
   const[open2,setOpen2]=useState(false);
+  const [devices, setDevices] = useState({});
+  
+  const fetchDevices = async () => {
+    try {
+      const response = await fetch(API_BASE_URL+'/device_map', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `${localStorage.getItem("token")}`
+        }
+      });
+      const responseData = await response.json();
+      if (!response.ok) {
+        throw new Error(responseData.message);
+      }
+      console.log(responseData.devices )
+      setDevices(prevState => (responseData.devices ));
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  useEffect(() => {
+    fetchDevices(); 
+  }, []);
+   console.log(devices)
+
   return (
     <>
 
@@ -44,12 +71,10 @@ function Security() {
        
        <div className='Loggedin'>
         <h2>Logged in</h2>
-        <Devices></Devices>
-        <Devices></Devices>
-        <Devices></Devices>
-        <Devices></Devices>
-       </div>
-        
+        {devices.length > 0 ? devices.map((device, key) => (
+              <Devices key={key} device={device} />
+            )) : <h1>No devices</h1>}
+          </div>
         
         </div>
     

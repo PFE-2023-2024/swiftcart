@@ -148,4 +148,22 @@
     
 
   }
+  @media screen and (max-width: 850px) {
+   
+    .MyProduct{
+        padding-left: 0em;
+        padding: 0.5em;
+        margin-top: 1em;
+    }
+    .MyProduct .card{
+        width: 100%;
+        
+    }
+    .MyProduct .header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 0.5em;
+    }
+  }
   

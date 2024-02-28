@@ -9,12 +9,13 @@ import cover from '../../../../../assets/images/cover.png';
 import EditProfile from "./edit/EditProfile";
 import EditImage from "./edit/EditImage";
 const Setting = () => {
+    const store=JSON.parse(localStorage.getItem('store'));
     const[EditProfileOpen,setEditProfileOpen]=React.useState(false);
     const[EditImageOpen,setEditImageOpen]=React.useState(false);
     return (
         <>
-        {EditImageOpen && <EditImage onClose={()=>{setEditImageOpen(false)}}/>}
-        {EditProfileOpen && <EditProfile onClose={()=>{setEditProfileOpen(false)}}/>}
+        {EditImageOpen && <EditImage profile_image={store.profile_image} cover_image={store.cover_image} onClose={()=>{setEditImageOpen(false)}}/>}
+        {EditProfileOpen && <EditProfile name={store.name} onClose={()=>{setEditProfileOpen(false)}}/>}
         <div className='setting'>
             <div className='setting-title '><h2>Store details</h2></div>
             <div className='setting-content'>
@@ -31,7 +32,7 @@ const Setting = () => {
                             <h1>
                             Store name
                             </h1>
-                            <h1>My store</h1>
+                            <h1>{store.name}</h1>
                         </div>
                     </div>
                     <div className="storename">

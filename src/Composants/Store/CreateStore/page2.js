@@ -29,13 +29,6 @@ function Steptwo({openPage3,openPage1,function1,Storename}) {
         <TextField
             error={firstNameError} // Ajouter la prop error
             helperText={firstNameError ? "Please enter the name of your store:" : ""}                
-              sx={{
-                                '& .MuiInputBase-input': {
-                                  fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                                  fontSize: '15px',
-                                  padding: '10px'
-                                },
-                }}
             onChange={handnameChange}    
             className='TextField'
             placeholder="Enter the name of your store "

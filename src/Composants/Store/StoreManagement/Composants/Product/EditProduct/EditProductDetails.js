@@ -3,7 +3,7 @@ import React from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import { CgClose } from "react-icons/cg";
 import { TextField } from '@mui/material'; 
-import './EditProductDetails.css';
+import './style/EditProductDetails.css';
 import Autocomplete from '@mui/material/Autocomplete';
 function EditProductDetails({onClose}) {
     const categories = [
@@ -16,7 +16,7 @@ function EditProductDetails({onClose}) {
     const[titleError, setTitleError] = React.useState('');
     const[stock, setStock] = React.useState('');
     const[stockError, setStockError] = React.useState('');
-    const[category, setCategory] = React.useState('');
+    const[category, setCategory] = React.useState(null);
     const[categoryError, setCategoryError] = React.useState('');
     const[deliveryPrice, setDeliveryPrice] = React.useState('');
     const[deliveryPriceError, setDeliveryPriceError] = React.useState('');
@@ -112,7 +112,7 @@ function EditProductDetails({onClose}) {
                 options={categories}
                 getOptionLabel={(option) => option.title}
                 value={category}
-                onChange={(e, value) => setCategory(value.title)}
+                onChange={(e, value) => setCategory(value)}
 
                 renderInput={(params) => <TextField {...params} helperText={categoryError} placeholder="Enter the product category"/>}
                 freeSolo

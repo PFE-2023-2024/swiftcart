@@ -12,7 +12,7 @@ function StoresRoute() {
     <Routes>
       <Route path="/Swiftcart/MyStores" element={<MyStore />} />
       <Route path="/Swiftcart/CreateStore" element={<CreateStore />} />
-      <Route path="/Swiftcart/Dashboard/:id" element={<Dashboard />}>
+      <Route path="/Swiftcart/Dashboard/" element={<Dashboard />}>
         <Route index element={<MyProduct/>} /> 
         <Route path="Product/new" element={<AddProduct/>} />
         <Route path="Product/edit/:id" element={<EditProduct/>} />

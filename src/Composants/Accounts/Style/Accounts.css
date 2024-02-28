@@ -100,7 +100,7 @@
     grid-area: body;
     } 
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 850px) {
     .Accounts{
         height: 100vh;
         width: 100%;
@@ -129,8 +129,8 @@
                 top:97%;
                 background-color: #2E8B57;
                }   
-               .Accounts .nav .nav-text{
-                display: none;
+               .Accounts .nav .nav-text img{
+               display: none;
                }
 
 }      

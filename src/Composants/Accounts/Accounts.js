@@ -8,6 +8,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { Outlet } from "react-router-dom";
 import {useUser} from '../../Context/UserProvider';
 import Dropdown from 'react-bootstrap/Dropdown';
+import ValidateurChaine from '../../function/ValiderChaine'
 function Accounts() {
   const { userInfo, setUserInfo } = useUser();
   const navigate = useNavigate(); 
@@ -23,7 +24,7 @@ function Accounts() {
               <Dropdown.Toggle className='nav-text' >
               
                 <img src={userInfo.image||Profile}></img>  
-            <h1>{userInfo.first_name}</h1>
+            <h1>{ValidateurChaine.reduireEtValiderChaine(userInfo.first_name,12)}</h1>
            
               </Dropdown.Toggle>
 

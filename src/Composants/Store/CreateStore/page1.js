@@ -6,9 +6,11 @@ import Radio from '@mui/joy/Radio'; // Correction: '@mui/joy/Radio' à '@mui/mat
 import RadioGroup from '@mui/joy/RadioGroup'; // Correction: '@mui/joy/RadioGroup' à '@mui/material/RadioGroup'
 import List from '@mui/joy/List'; // Correction: '@mui/joy/List' à '@mui/material/List'
 import ListItem from '@mui/joy/ListItem'; // Correction: '@mui/joy/ListItem' à '@mui/material/ListItem'
+import { useNavigate } from "react-router-dom";
 
 function Stepone({openPage2}) {
   const [businesneeds, setBusinesneeds] = useState('');
+  const navigate = useNavigate();
 
   const handlebusinesneedslChange = (e) => {
     setBusinesneeds(e.target.value);
@@ -35,7 +37,7 @@ function Stepone({openPage2}) {
               <Radio
                 overlay
                 value='starting' 
-                label={`I'm just starting`}
+                label={`Only online store`}
                 sx={{ flexGrow: 1 }}
                 slotProps={{
                   action: ({ checked }) => ({
@@ -54,7 +56,7 @@ function Stepone({openPage2}) {
               <Radio
                 overlay
                 value='selling' // Correction: Définir la valeur pour cet élément Radio
-                label={`I’m already selling online or in person`}
+                label={`I'have a real store`}
                 sx={{ flexGrow: 1 }}
                 slotProps={{
                   action: ({ checked }) => ({
@@ -72,12 +74,15 @@ function Stepone({openPage2}) {
         </RadioGroup>
       </div>
       <div className='footer'>
+        <button onClick={()=>{navigate('/Swiftcart/MyStores')}} className='skip'>Cancel</button>
+        <div className="uyxgzaiuhxiu">
         <button onClick={openPage2} className='skip'>  
             Skip
         </button>
         <button onClick={openPage2} className='next'>  
             Next<GrFormNext className="GrFormNext" />
-        </button>
+        </button> 
+        </div>
       </div>
     </div>
   );

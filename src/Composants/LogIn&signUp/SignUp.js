@@ -209,13 +209,7 @@ function SignUp() {
                                error={firstNameError} // Ajouter la prop error
                                helperText={firstNameError ? "Please enter your first name." : ""} // Afficher le texte d'aide en fonction de l'erreu
                              
-                               sx={{
-                                '& .MuiInputBase-input': {
-                                  fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                                  fontSize: '15px',
-                                  padding: '10px'
-                                },
-                              }}
+                            
                                     className='TextField'
                                     placeholder="Enter your first name "
                                     value={firstName}
@@ -235,13 +229,6 @@ function SignUp() {
                                <div className='titre'>
                                <label> Last Name</label>
                                <TextField
-                                sx={{
-                                    '& .MuiInputBase-input': {
-                                      fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                                      fontSize: '15px',
-                                      padding: '10px'
-                                    },
-                                  }}
                                     className='TextField'
                                     placeholder="Enter your Last Name "
                                     value={lastName}
@@ -266,18 +253,12 @@ function SignUp() {
                                 <TextField
                                  error={emailError}
                                  helperText={emailError && "Please enter a valid email address."}                          
-                                 sx={{
-                                    '& .MuiInputBase-input': {
-                                      fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                                      fontSize: '15px',
-                                      padding: '10px'
-                                    },
-                                  }}
                                 placeholder='Enter your e-mail adress'
                                 type='email'
                                 className='TextFieldMail'
                                 value={email}
                                 onChange={handleEmailChange}
+                                
                                 InputProps={{
                                     endAdornment: emailError && (
                                       <InputAdornment position='end'>
@@ -313,12 +294,12 @@ function SignUp() {
                                         ),
                                     }}
                                     sx={{
-                                        '& .MuiInputBase-input': {
-                                          fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                                          fontSize: '15px',
-                                          padding: '10px'
-                                        },
-                                      }}
+                                      '& .MuiInputBase-input': {
+                                        fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
+                                        fontSize: '1rem',
+                                        padding: '0.8rem 1.5rem'
+                                      },
+                                    }}
                                 />
                                </div>
 
@@ -340,15 +321,15 @@ function SignUp() {
                                             </InputAdornment>
                                         ),
                                     }}
+                                    sx={{
+                                      '& .MuiInputBase-input': {
+                                        fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
+                                        fontSize: '1rem',
+                                        padding: '0.8rem 1.5rem'
+                                      },
+                                    }}
                                     error={confirmPasswordError}
                                         helperText={confirmPasswordError && "Passwords do not match."}                                       
-                                    sx={{
-                                        '& .MuiInputBase-input': {
-                                          fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                                          fontSize: '15px',
-                                          padding: '10px'
-                                        },
-                                      }}
 
                                 />
                                 </div>

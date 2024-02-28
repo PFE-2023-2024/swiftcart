@@ -21,8 +21,7 @@ function CreateStore() {
       onlinePayment: false
     }) ;
     const [Storename, setStorename] = useState('');
-    const [Storecategory, setStorecategory] = useState('');
-
+    const [Storecategory, setStorecategory] = useState(null);
     const openPage1=()=>{
       setpage1(true);
       setLinearValue(4);

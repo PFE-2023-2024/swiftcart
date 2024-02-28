@@ -22,7 +22,6 @@ export const UserProvider = ({ children }) => {
       try {
         const response = await fetch(API_BASE_URL + "/users/" + payload.user.id);
         const userData = await response.json();
-        console.log(userData);
         setUserInfo(prevState => ({ ...prevState, ...userData.user }));
       } catch (err) {
         console.error(err.message);
@@ -33,12 +32,10 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     setToken(storedToken);
-    console.log(storedToken);
   }, []); // Ajouter une dépendance vide pour éviter une boucle infinie
 
   useEffect(() => {
     fetchUserData();
-    console.log(token);
   }, [token]); // Appeler fetchUserData uniquement lorsque le token change
 
   return (

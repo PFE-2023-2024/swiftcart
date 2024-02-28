@@ -1,3 +1,4 @@
+import { IoMdArrowRoundBack } from "react-icons/io"; 
 import React,{useState} from 'react'
 import { FcOk } from 'react-icons/fc';
 import './Style/ForgotPassword.css';
@@ -10,7 +11,9 @@ import axios from 'axios'; // Importer axios
 import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import { useNavigate } from 'react-router-dom';
 function ForgotPassword() {
+  const  navigate =useNavigate();
     
     const [valider, setvalider] = useState(false);
     const [Erroremail, setErroremail] = useState(false);
@@ -80,7 +83,9 @@ function ForgotPassword() {
         </Backdrop> 
     
    <div className='ForgotPassword'>
+   
         <div className='page'>
+        <button className='button' onClick={()=>{navigate('/Swiftcart/LogIn')}}><IoMdArrowRoundBack /></button>
         {valider ? 
             <div className='validate'>
                 <div><FcOk  size={50}/></div>
@@ -95,14 +100,6 @@ function ForgotPassword() {
                     <TextField
                                error={Erroremail} // Ajouter la prop error
                                helperText={Erroremail ? "Please enter a valid email address.": ""} // Afficher le texte d'aide en fonction de l'erreu
-                             
-                               sx={{
-                                '& .MuiInputBase-input': {
-                                  fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                                  fontSize: '15px',
-                                  padding: '10px'
-                                },
-                              }}
                                     className='TextField'
                                     placeholder="Enter your e-mail adress"
                                     value={email}

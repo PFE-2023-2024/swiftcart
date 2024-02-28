@@ -27,6 +27,7 @@
 }
 .MyStore .card .header .a1{
 width: 10rem;
+cursor: pointer;
 }
 .MyStore .card .header .a2{
     width: 3rem;
@@ -70,11 +71,12 @@ background-color: rgba(26, 22, 22, 0.7);
     max-height: 250px;
    
 }
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 850px) {
     .MyStore .card{
        width: 100%;
        height: 100%;
        border-radius:0;
+        padding-top: 2rem;
         
     } 
     .MyStore .card .WelcomeUser{
@@ -82,14 +84,17 @@ background-color: rgba(26, 22, 22, 0.7);
         width: 100%;
         align-items: start;
         flex-direction: column;
-        justify-content: space-between;   
+        justify-content: space-between; 
+        position: relative;  
+        margin-bottom: 2rem;
     } 
     .MyStore .card .WelcomeUser button{
-        
+        position: absolute;
+        right: 0;
         justify-content: center;
         align-items: center;
-       
-        width: 100%;
+       max-width: 150px;
+        width: 50%;
        
     }
     .MyStore .card .WelcomeUser button .re1{

@@ -12,7 +12,6 @@ import IconButton from '@mui/material/IconButton';
 import { FaFacebookSquare } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import axios from 'axios'; 
-import { useNavigate } from 'react-router-dom';
 import Backdrop from '@mui/material/Backdrop';
 import Alert from 'react-bootstrap/Alert';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -37,8 +36,8 @@ function LogIn() {
     return () => clearTimeout(timer);}
   }, []);
 
-  ///////////////////////////////
-  const navigate = useNavigate();
+
+
   ///////// Déclaration des états pour gérer l'affichage du mot de passe, l'email, le mot de passe///////
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
@@ -56,7 +55,7 @@ function LogIn() {
   const [passwordError, setpasswordError] = useState(false);
   /////////////// l'affichage du backdrop pour le chargement///////////////////
   const [open, setOpen] = React.useState(false);
-  const [errorAlert, setErrorAlert] = useState(false);
+  const [errorAlert, setErrorAlert] = useState('');
   ////////////// // Fonction pour soumettre le formulaire de connexion////////////////////
   const validate = () => {
     let isValid = true;
@@ -81,7 +80,7 @@ function LogIn() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorAlert(false);
+    setErrorAlert('');
     if(!validate()){
       return;
     }
@@ -93,7 +92,7 @@ function LogIn() {
         localStorage.setItem("token",response.data.token)
         window.location.href='/Swiftcart';
       } catch (error) {
-        setErrorAlert(true);
+        setErrorAlert(error.response.data.message);
         console.error('Login error:', error.response);
       }
       setOpen(false)
@@ -125,15 +124,15 @@ function getGoogleOAuthURL() {
 }
 
   return (<>
-    { errorAlert && <Backdrop
+    { errorAlert.trim() && <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={true}
       >
-        <Alert className='alert' variant="danger" onClose={() => {setErrorAlert(false);}} dismissible>
+        <Alert className='alert' variant="danger" onClose={() => {setErrorAlert('');}} dismissible>
         <Alert.Heading>The connection failed.</Alert.Heading>
         <p>
-        Please check your credentials and try again. If the problem persists, please contact technical support for assistance.
-        </p>
+      {errorAlert}
+         </p>
       </Alert>
        
       </Backdrop>}
@@ -167,15 +166,7 @@ function getGoogleOAuthURL() {
                 <TextField
                   className='TextField'
                   placeholder="Enter your e-mail adress"
-                  id='input-with-icon-textfield'
-                  sx={{
-                    '& .MuiInputBase-input': {
-                      fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                      fontSize: '15px',
-                      padding: '10px'
-                    },
-                  }}
-                  
+                  id='input-with-icon-textfield'        
                   value={email}
                   onChange={handleEmailChange}
                   error={emailError} // Ajouter la prop error
@@ -207,7 +198,7 @@ function getGoogleOAuthURL() {
                     '& .MuiInputBase-input': {
                       fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
                       fontSize: '15px',
-                      padding: '10px'
+                      padding: '0.8rem 1rem'
                     },
                   }}
                   InputProps={{
