@@ -22,6 +22,7 @@ function CreateStore() {
     }) ;
     const [Storename, setStorename] = useState('');
     const [Storecategory, setStorecategory] = useState(null);
+    const [businesneeds, setBusinesneeds] = useState('');
     const openPage1=()=>{
       setpage1(true);
       setLinearValue(4);
@@ -71,11 +72,11 @@ function CreateStore() {
          
             </div>
             <div className='main'>
-              {page1 && <Stepone openPage2={openPage2}></Stepone>}
+              {page1 && <Stepone openPage2={openPage2} businesneed={businesneeds}function1={setBusinesneeds} ></Stepone>}
               {page2 && <Steptwo openPage1={openPage1} Storename={Storename}function1={setStorename} openPage3={openPage3}></Steptwo>}
               {page3 && <Stepthree openPage2={openPage2} Storecategory={Storecategory}  function1={setStorecategory} openPage4={openPage4}></Stepthree>}
               {page4 && <Stepfour openPage5={openPage5} openPage3={openPage3} paymentMethods={paymentMethods} function1={setpaymentMethods}></Stepfour>}
-              {page5 && <Stepfive openPage4={openPage4} paymentMethod={paymentMethods}  Storename={Storename} Storecategory={Storecategory}   ></Stepfive>}
+              {page5 && <Stepfive openPage4={openPage4} businesneeds={businesneeds} paymentMethod={paymentMethods}  Storename={Storename} Storecategory={Storecategory}   ></Stepfive>}
            
             </div>
         </div>

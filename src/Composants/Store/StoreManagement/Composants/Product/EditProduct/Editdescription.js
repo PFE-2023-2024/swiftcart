@@ -1,15 +1,63 @@
-import React ,{useState}from 'react'
+import React ,{useEffect, useState}from 'react'
 import { MdReportGmailerrorred } from "react-icons/md"; 
 import SunEditor from 'suneditor-react';
 import Backdrop from '@mui/material/Backdrop';
 import { CgClose } from "react-icons/cg";
 import './style/EditProductDetails.css';
-function Editdescription({onClose,editorState}) {
+import {API_BASE_URL} from '../../../../../../config';
+function Editdescription({onClose,editorState, product,setOpenSnackbar,setUpdated}) {
     const [editor, setEditorState] = useState(editorState);
     const [error, setError] = useState('');
+    const [openSave, setOpenSave] = useState(false);
+    
+    useEffect(() => {
+        if(editorState !== editor){
+            setOpenSave(true);
+        }else{
+            setOpenSave(false);
+        }
+    }, [editor])
+    const handelSave=async (e)=>{
+        e.preventDefault();
+      
+        try {
+          const formData = new FormData();
+
+          formData.append('description', editor
+          .replace(/'/g, "&#039;"));
+          console.log(editor)
+          
+          const respance=  await fetch(`${API_BASE_URL}/products?store_id=${JSON.parse(localStorage.getItem('store')).id}&&id=${product.id}`, {
+            method: 'PUT',
+            headers: {
+              contentType: 'multipart/form-data',
+              Authorization: `${localStorage.getItem('token')}`
+            },  
+            body: formData
+          });
+          const res= await respance.json();
+          if(res.success){
+            setOpenSnackbar(true);
+            setUpdated(JSON.stringify({
+              description:editor
+            }));
+            onClose();
+           
+          }
+          else{
+            setError(res.message);
+           throw new Error();
+          }
+        } catch (error) {
+          console.log(error);
+          
+        }
+    }
+
     const handleEditorChange = (content) => {
         setEditorState(content);
       };
+      
   return (
     <Backdrop open={true}sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}>
     <div className='EditProductDetails'> 
@@ -38,7 +86,8 @@ function Editdescription({onClose,editorState}) {
         setContents={editor}/>
 
     </div>
-    <div className="button"><button >Save Changes</button></div>
+    <div className="button">{openSave?<button onClick={handelSave}>Save Changes</button>:<button style={{cursor:'not-allowed',background:'#d6d6d683',border:'none'}}>Save Changes</button>}</div>
+
     </div>
     </Backdrop>
   )

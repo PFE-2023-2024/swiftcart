@@ -1,0 +1,40 @@
+.SearchBarixzjokzp{
+    display: flex;
+    padding: 0;
+    align-items: center;
+}
+.ant-input {
+    border-radius: 0;
+    border-color:gold ;
+}
+.ant-input:hover, .ant-input:focus {
+    border-color: transparent;
+}
+.Dropdown{
+ 
+}
+ .Dropdown .nav-text{
+   border-radius: 0;
+   border: none;
+   background-color:  gold;
+   color: black;
+   border-top-left-radius:5px ;
+   border-bottom-left-radius:5px ;
+}
+.ant-input-group-addon button{
+    background-color: gold;
+    padding-left:15px !important;
+    padding-right:15px !important;
+    color: black;
+}
+.ant-input-group-addon button:where(:hover){
+    background-color: gold !important;
+    color: black !important;
+}
+
+
+.Dropdown .nav-text:active , .Dropdown .nav-text:hover, .Dropdown .nav-text:focus,.Dropdown .nav-text:visited,.Dropdown .nav-text:link,.Dropdown .nav-text:target,.Dropdown .nav-text:focus{
+    background-color: gold;
+    color: black;
+
+}  

@@ -1,82 +1,116 @@
-import React, { useState } from 'react';
-import { SortableContainer, SortableElement } from 'react-sortable-hoc';
-// This will make each grid item sortable
-const SortableItem = SortableElement(({ value }) => (
-  <div style={gridStyle}><img src={value.thumbnail}></img></div>
-));
+import React, { useState, useEffect } from 'react';
+import { ProductService } from './ProductService';
+import { Button } from 'primereact/button';
+import { DataView, DataViewLayoutOptions } from 'primereact/dataview';
+import { Rating } from 'primereact/rating';
+import { Tag } from 'primereact/tag';
+import { classNames } from 'primereact/utils';
+import 'primeflex/primeflex.css';  
+import 'primereact/resources/primereact.css';
+import 'primereact/resources/themes/lara-light-indigo/theme.css';
+import 'primeicons/primeicons.css';
 
-// This will define the container that holds all sortable items
-const SortableGrid = SortableContainer(({ items }) => {
-  return (
-    <div style={gridContainerStyle}>
-      {items.map((value, index) => (
-        <SortableItem key={`item-${index}`} index={index} value={value} />
-      ))}
-    </div>
-  );
-});
+export default function BasicDemo() {
+    const [products, setProducts] = useState([]);
+    const [layout, setLayout] = useState('grid');
 
-const gridContainerStyle = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(4, 1fr)',
-  gridGap: '10px',
-  padding: '10px', // Added padding for better spacing around the grid
-  border: '1px solid #ccc', // Optional border for better visual enclosure
-};
+    useEffect(() => {
+        ProductService.getProducts().then((data) => setProducts(data.slice(0, 12)));
+    }, []);
 
-const gridStyle = {
-  padding: '20px', // Add padding for each item for spacing
-  textAlign: 'center', // Center text inside each grid item
-  backgroundColor: '#f0f0f0', // Light background color for each item
-  border: '1px solid #ddd', // Subtle border for each item
-  borderRadius: '4px', // Rounded corners for a modern look
-  cursor: 'grab', // Change cursor to indicate the item can be dragged
-};
+    const getSeverity = (product) => {
+        switch (product.inventoryStatus) {
+            case 'INSTOCK':
+                return 'success';
 
-function MySortableGrid() {
-  const [images, setImages] = useState([
-    {
-      original: "https://picsum.photos/id/1018/1000/600/",
-      thumbnail: "https://picsum.photos/id/1018/250/150/",
-    },
-    {
-      original: "https://picsum.photos/id/1015/1000/600/",
-      thumbnail: "https://picsum.photos/id/1015/250/150/",
-    },
-    {
-      original: "https://picsum.photos/id/1019/1000/600/",
-      thumbnail: "https://picsum.photos/id/1019/250/150/",
-    },
-    {
-      original: "https://picsum.photos/id/1018/1000/600/",
-      thumbnail: "https://picsum.photos/id/1018/250/150/",
-    },
-    {
-      original: "https://picsum.photos/id/1015/1000/600/",
-      thumbnail: "https://picsum.photos/id/1015/250/150/",
-    },
-    {
-      original: "https://picsum.photos/id/1019/1000/600/",
-      thumbnail: "https://picsum.photos/id/1019/250/150/",
-    }
-  ]); // Initialize with more items as needed
-  function arrayMoveImmutable(array, fromIndex, toIndex) {
-    const arrayCopy = [...array]; // Create a copy of the array to avoid mutation
-    const startIndex = fromIndex < 0 ? arrayCopy.length + fromIndex : fromIndex;
-    if (startIndex >= 0 && startIndex < arrayCopy.length) {
-      const endIndex = toIndex < 0 ? arrayCopy.length + toIndex : toIndex;
-      const [item] = arrayCopy.splice(startIndex, 1);
-      arrayCopy.splice(endIndex, 0, item);
-    }
-    return arrayCopy;
-  }
-  const onSortEnd = ({ oldIndex, newIndex }) => {
-  
-    setImages(arrayMoveImmutable(images, oldIndex, newIndex));
-   
-  };
+            case 'LOWSTOCK':
+                return 'warning';
 
-  return <SortableGrid axis="xy" items={images} onSortEnd={onSortEnd} />;
+            case 'OUTOFSTOCK':
+                return 'danger';
+
+            default:
+                return null;
+        }
+    };
+
+    const listItem = (product, index) => {
+        return (
+            <div className="col-12" key={product.id}>
+                <div className={classNames('flex flex-column xl:flex-row xl:align-items-start p-4 gap-4', { 'border-top-1 surface-border': index !== 0 })}>
+                    <img className="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round" src={`https://primefaces.org/cdn/primereact/images/product/${product.image}`} alt={product.name} />
+                    <div className="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+                        <div className="flex flex-column align-items-center sm:align-items-start gap-3">
+                            <div className="text-2xl font-bold text-900">{product.name}</div>
+                            <Rating value={product.rating} readOnly cancel={false}></Rating>
+                            <div className="flex align-items-center gap-3">
+                                <span className="flex align-items-center gap-2">
+                                    <i className="pi pi-tag"></i>
+                                    <span className="font-semibold">{product.category}</span>
+                                </span>
+                                <Tag value={product.inventoryStatus} severity={getSeverity(product)}></Tag>
+                            </div>
+                        </div>
+                        <div className="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
+                            <span className="text-2xl font-semibold">${product.price}</span>
+                            <Button icon="pi pi-shopping-cart" className="p-button-rounded" disabled={product.inventoryStatus === 'OUTOFSTOCK'}></Button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    const gridItem = (product) => {
+        return (
+            <div className="col-12 sm:col-6 lg:col-12 xl:col-4 p-2" key={product.id}>
+                <div className="p-4 border-1 surface-border surface-card border-round">
+                    <div className="flex flex-wrap align-items-center justify-content-between gap-2">
+                        <div className="flex align-items-center gap-2">
+                            <i className="pi pi-tag"></i>
+                            <span className="font-semibold">{product.category}</span>
+                        </div>
+                        <Tag value={product.inventoryStatus} severity={getSeverity(product)}></Tag>
+                    </div>
+                    <div className="flex flex-column align-items-center gap-3 py-5">
+                        <img className="w-9 shadow-2 border-round" src={`https://primefaces.org/cdn/primereact/images/product/${product.image}`} alt={product.name} />
+                        <div className="text-2xl font-bold">{product.name}</div>
+                        <Rating value={product.rating} readOnly cancel={false}></Rating>
+                    </div>
+                    <div className="flex align-items-center justify-content-between">
+                        <span className="text-2xl font-semibold">${product.price}</span>
+                        <Button icon="pi pi-shopping-cart" className="p-button-rounded" disabled={product.inventoryStatus === 'OUTOFSTOCK'}></Button>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    const itemTemplate = (product, layout, index) => {
+        if (!product) {
+            return;
+        }
+
+        if (layout === 'list') return listItem(product, index);
+        else if (layout === 'grid') return gridItem(product);
+    };
+
+    const listTemplate = (products, layout) => {
+        return <div className="grid grid-nogutter">{products.map((product, index) => itemTemplate(product, layout, index))}</div>;
+    };
+
+    const header = () => {
+        return (
+            <div className="flex justify-content-end">
+                <DataViewLayoutOptions layout={layout} onChange={(e) => setLayout(e.value)} />
+            </div>
+        );
+    };
+
+    return (
+        <div className="card">
+            <DataView value={products} listTemplate={listTemplate} layout={layout} header={header()} />
+        </div>
+    )
 }
-
-export default MySortableGrid;
+        

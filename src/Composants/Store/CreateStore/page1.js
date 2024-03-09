@@ -8,14 +8,17 @@ import List from '@mui/joy/List'; // Correction: '@mui/joy/List' à '@mui/materi
 import ListItem from '@mui/joy/ListItem'; // Correction: '@mui/joy/ListItem' à '@mui/material/ListItem'
 import { useNavigate } from "react-router-dom";
 
-function Stepone({openPage2}) {
-  const [businesneeds, setBusinesneeds] = useState('');
+function Stepone({openPage2,businesneed,function1}) {
+  const [businesneeds, setBusinesneeds] = useState(businesneed);
   const navigate = useNavigate();
 
   const handlebusinesneedslChange = (e) => {
     setBusinesneeds(e.target.value);
   };
-
+const validate=()=>{
+  function1(businesneeds);
+  openPage2();
+}
   return (
     <div className='one'>
       <div className='header'>
@@ -36,7 +39,7 @@ function Stepone({openPage2}) {
             <ListItem className='item' variant='outlined' sx={{ boxShadow: 'sm' }}>
               <Radio
                 overlay
-                value='starting' 
+                value='fasle' 
                 label={`Only online store`}
                 sx={{ flexGrow: 1 }}
                 slotProps={{
@@ -55,7 +58,7 @@ function Stepone({openPage2}) {
             <ListItem className='item' variant='outlined' sx={{ boxShadow: 'sm' }}>
               <Radio
                 overlay
-                value='selling' // Correction: Définir la valeur pour cet élément Radio
+                value='true' // Correction: Définir la valeur pour cet élément Radio
                 label={`I'have a real store`}
                 sx={{ flexGrow: 1 }}
                 slotProps={{
@@ -79,7 +82,7 @@ function Stepone({openPage2}) {
         <button onClick={openPage2} className='skip'>  
             Skip
         </button>
-        <button onClick={openPage2} className='next'>  
+        <button onClick={validate} className='next'>  
             Next<GrFormNext className="GrFormNext" />
         </button> 
         </div>

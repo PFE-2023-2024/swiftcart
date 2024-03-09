@@ -6,7 +6,9 @@ import{API_BASE_URL} from "../../../config"
 import { useNavigate } from 'react-router-dom';
 import { Backdrop, CircularProgress } from '@mui/material';
 import { AiOutlineClose } from "react-icons/ai"; 
-function Stepfive({openPage4,Storecategory,Storename,paymentMethod}) {
+import {useUser} from '../../../Context/UserProvider'
+function Stepfive({openPage4,Storecategory,Storename,paymentMethod,businesneeds}) {
+ const { userInfo, setUserInfo } = useUser();
  const navigate=useNavigate();
  const[error,setError]=React.useState('');
  const [open, setOpen] = React.useState(false);
@@ -21,7 +23,13 @@ function Stepfive({openPage4,Storecategory,Storename,paymentMethod}) {
         },
         body: JSON.stringify({
           name: Storename,
-          category_id: Storecategory.id
+          category_id: Storecategory.id,
+          payment_on_delivery: paymentMethod.delivery,
+          payment_online: paymentMethod.onlinePayment,
+          payment_with_cash: paymentMethod.cash, 
+          payment_with_bank_transfer : paymentMethod.bankTransfer,
+          has_local : businesneeds==='true'?true:false,
+          email: userInfo.email
         }),
       })).json();
       if (reponse.success) {
@@ -33,6 +41,7 @@ function Stepfive({openPage4,Storecategory,Storename,paymentMethod}) {
         setError(reponse.message);
        }
     } catch (error) {
+      console.log(error);
       setError('An error occured, please try again later');    
     }
     setOpen(false);

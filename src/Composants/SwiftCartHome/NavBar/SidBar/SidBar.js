@@ -2,7 +2,7 @@ import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
 import { IoClose } from 'react-icons/io5'; // Pour un bouton de fermeture, par exemple
-import  Image  from '../../../assets/images/Montassar Tayachi.png';
+import  Image  from '../../../../assets/images/Montassar Tayachi.png';
 import './Style/SidBar.css'
 const Sidebar = ({ onClose }) => {
   return (

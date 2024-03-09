@@ -64,7 +64,7 @@ function Edit({ open1,open2,open3,onClose,Email,LastName,FirstName,open4,image }
 const handleSaveImage = () => {
   const formData = new FormData();
   setOpenCircularProgress(true);
-  formData.append('file', imageChange);
+  formData.append('user_image', imageChange);
   fetch(API_BASE_URL+'/credentials/change_user_image', {
     method: 'PUT',
     headers: {'Authorization': `${token}`},

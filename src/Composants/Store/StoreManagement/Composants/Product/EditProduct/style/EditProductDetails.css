@@ -18,6 +18,10 @@
     max-height: 400px;
     overflow: auto;
 }
+.EditProductDetails .SunEditor img{
+    max-width: 100%;
+    height: auto;
+}
 .EditProductDetails .header h1{
     font-size: 1.2em;
     padding: 0;
@@ -37,15 +41,20 @@
 .EditProductDetails .body{
 background-color: transparent;
 padding:1em;
-display: grid;
-grid-template-columns: 1fr 1fr;
+
+}
+.EditProductDetails .body .row{
+display: flex ;
+flex-direction: row !important;
+justify-content: space-between;
 align-items: center;
-gap: 1em;
+
 }
 .EditProductDetails .body .input{
     display: flex;
     flex-direction: column;
 }
+
 
 .EditProductDetails  .erreur{
     display: flex;

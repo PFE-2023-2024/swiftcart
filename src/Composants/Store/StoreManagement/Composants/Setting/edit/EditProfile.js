@@ -9,17 +9,15 @@ import { isValidPhoneNumber } from 'libphonenumber-js';
 import {API_BASE_URL} from '../../../../../../config';
 
 import './Style/EditProfile.css'
-function EditProfile({onClose,name}) {
-
-    const [storeName, setStoreName] = React.useState(name);
-    const [storePhone, setStorePhone] = React.useState('');
-    const [storeEmail, setStoreEmail] = React.useState('');
+function EditProfile({onClose,store}) {
+    const [storeName, setStoreName] = React.useState(store.name);
+    const [storePhone, setStorePhone] = React.useState(store.phone);
+    const [storeEmail, setStoreEmail] = React.useState(store.email);
     const [storeNameError, setStoreNameError] = React.useState('');
     const [storePhoneError, setStorePhoneError] = React.useState('');
     const [storeEmailError, setStoreEmailError] = React.useState('');
     const [error, setError] = React.useState('');
     const [loading, setLoading] = React.useState(false);
-    
     const validate = () => {
         let isValid = true;
         if (!storeName) {
@@ -50,30 +48,31 @@ function EditProfile({onClose,name}) {
     }
     const [open, setOpen] = React.useState(false);
     useEffect(() => {
-      if (storeName !== name) {
+      if (storeName !== store.name || storePhone != store.phone || storeEmail !== store.email) {
         setOpen(true);
       }
       else{
         setOpen(false);
       }
-    }, [storeName]);
+    }, [storeName,storePhone,storeEmail]);
     const saveChanges = async () => {
         if (!validate()) {
           return; 
           }
           setLoading(true);
         try {
-          const reponce = await fetch(`${API_BASE_URL}/stores`, {
+          const formdata=new FormData();
+          formdata.append('name',storeName);
+          formdata.append('phone',storePhone);
+          formdata.append('email',storeEmail);
 
+          const reponce = await fetch(`${API_BASE_URL}/stores?id=${JSON.parse(localStorage.getItem('store')).id}`, {
             method: 'PUT',
             headers: {
-              'Content-Type': 'application/json',
+              'contentType': 'multipart/form-data',
               'Authorization': `${localStorage.getItem('token')}`
             },
-            body: JSON.stringify({
-              name: storeName,
-              id:JSON.parse(localStorage.getItem('store')).id,
-            })
+            body: formdata
           });
          const res= await reponce.json();
           if (res.success) {
@@ -83,7 +82,9 @@ function EditProfile({onClose,name}) {
           }
           else {
             setLoading(false);
-            setError(res.message);
+            console.log(res);
+            // setError(res.message);
+            // throw new Error();
           }
         } catch (error) {
           console.log(error);
@@ -107,23 +108,21 @@ function EditProfile({onClose,name}) {
             <p><MdReportGmailerrorred />{error}</p>
           </div> }
           <h5>These details could be publicly available. Do not use your personal information.</h5>
-          <label>Store name</label>
+        <div style={{display:'flex'}}>
+        <div>
+        <label>Store name</label>
           <TextField
             value={storeName} 
             helperText={storeNameError.trim() ? storeNameError : ''}
             onChange={(e) => setStoreName(e.target.value)}
             error={storeNameError.trim()}
             className="input"
-            sx={{
-              '& .MuiInputBase-input': {
-                fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                fontSize: '15px',
-                padding: '10px'
-              },
-            }}
+           
             type='text'
           ></TextField>
-            <label>Store phone</label>
+        </div>
+        <div style={{width:'0.5em'}}></div>
+           <div> <label>Store phone</label>
             <MuiTelInput
                             defaultCountry='TN'
                             value={storePhone}
@@ -136,13 +135,15 @@ function EditProfile({onClose,name}) {
                                 autoFocus: true,
                             }}
                             sx={{
-                                '& .MuiInputBase-input': {
-                                    fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                                    fontSize: '15px',
-                                    padding: '12px'
-                                },
+                              '& .MuiInputBase-input': {
+                                fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
+                                padding: "0.8rem 1.5rem !important",   
+                              },
                             }}
-                        />
+                        /></div>
+                      
+        </div>
+        <h6>Appears on your website.</h6>
             <label>Store Email</label>
             <TextField
             value={storeEmail}
@@ -151,15 +152,9 @@ function EditProfile({onClose,name}) {
             type='email'
             className="input"
             helperText={storeEmailError.trim() ? storeEmailError : ''}
-            sx={{
-              '& .MuiInputBase-input': {
-                fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                fontSize: '15px',
-                padding: '10px'
-              },
-            }}
           ></TextField>
-         <div className="button"> {open ? <button onClick={saveChanges}>Save Changes</button>:<button style={{cursor:'not-allowed',background:'#d6d6d683',border:'none'}}>Save Changes</button>}</div>
+          <h6>Receives messages about your store. For sender email, go to notification settings.</h6>
+         <div className="button"> <button onClick={()=>{onClose()}} className='Cancel'>Cancel</button> {open ? <button className='save' onClick={saveChanges}>Save Changes</button>:<button className='save' style={{cursor:'not-allowed',background:'#d6d6d683',border:'none'}}>Save Changes</button>}</div>
        
         </div>
       </div>

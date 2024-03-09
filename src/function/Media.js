@@ -29,22 +29,36 @@ class MediaConverter {
       const matchExtension = url.match(patternExtension);
     
       if (matchExtension) {
-        if (['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'].includes(matchExtension[1].toLowerCase())) {
-          return 'image';
-        } else if (['mp4', 'avi', 'mov', 'wmv', 'flv'].includes(matchExtension[1].toLowerCase())) {
-          return 'video';
-        }
+        // Mapping des extensions de fichier aux types MIME
+        const mimeTypes = {
+          jpg: 'image/jpeg',
+          jpeg: 'image/jpeg',
+          png: 'image/png',
+          gif: 'image/gif',
+          bmp: 'image/bmp',
+          webp: 'image/webp',
+          mp4: 'video/mp4',
+          avi: 'video/x-msvideo',
+          mov: 'video/quicktime',
+          wmv: 'video/x-ms-wmv',
+          flv: 'video/x-flv',
+        };
+    
+        // Convertir l'extension en minuscule pour la recherche dans le mapping
+        const extension = matchExtension[1].toLowerCase();
+        return mimeTypes[extension] || 'inconnu';
       }
     
       // Regex pour détecter des liens de vidéo populaires sans extension spécifique
       const patternVideoSites = /youtube\.com|vimeo\.com|dailymotion\.com|youtu\.be/i;
       if (patternVideoSites.test(url)) {
-        return 'video';
+        return 'video'; // Dans ce cas, nous ne pouvons pas déterminer le type MIME exact
       }
     
       // Retourne 'inconnu' si l'URL ne correspond à aucun motif connu
       return 'inconnu';
     }
+    
     
   }
   

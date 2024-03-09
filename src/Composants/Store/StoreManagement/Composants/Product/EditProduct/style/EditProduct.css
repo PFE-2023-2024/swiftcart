@@ -49,6 +49,10 @@
     border: 0.15em solid #e0e0e0;
     padding: 1em;
 }
+.EditProduct .editorState img{
+    width: 100%;
+    height: auto;
+}
 .EditProduct .card .detailsProduct{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -61,10 +65,10 @@
     border-bottom: 0.1em solid #e0e0e0;
 }
 .EditProduct .card .detailsProduct .item h2{
-    font-size: 0.9em;
-    margin: 0;
+    font-size: 1.2em;
+    margin-top: 0.5em;
     font-weight: 400;
-    color: #727070;
+    color: #555555;
 
 }
 .EditProduct label{

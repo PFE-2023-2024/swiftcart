@@ -17,7 +17,7 @@ function Navbar({setToggle}) {
     };
     useEffect(() => {
         setStore(JSON.parse(localStorage.getItem('store')));
-    }, [store]);
+    }, []);
     return(
         <>
         <div className="nav">

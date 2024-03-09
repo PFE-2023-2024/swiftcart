@@ -1,0 +1,12 @@
+
+.Home{
+}
+.Home .nav84a984c{
+    grid-area: navbar;    
+}
+.Home .home{
+    background-color: whitesmoke;
+    grid-area: body;
+    padding: 0; 
+    margin: 0;      
+}

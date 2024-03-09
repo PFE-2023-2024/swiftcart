@@ -1,0 +1,29 @@
+.Result{}
+.Result .ResultNav .navaa{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.Result .ResultNav .button{
+    display: none;
+    background-color: gold;
+    color: black;
+    font-size: 1em;
+    font-weight: 500;
+    padding: 0.2em 0.5em;
+    border-radius: 0.1em;
+    border: 0.1em solid black;
+}
+.Result .ResultNav .button:hover{
+    background-color: rgb(253, 233, 115);
+}
+.Result .ResultNav p{
+    font-size: 1.2em;
+    font-weight: 500;
+}
+@media  (max-width: 800px){
+    .Result .ResultNav .button{
+        display: block;
+    }
+    
+}

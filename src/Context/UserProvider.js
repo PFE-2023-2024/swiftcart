@@ -19,10 +19,12 @@ export const UserProvider = ({ children }) => {
   const fetchUserData = async () => {
     if (token) {
       const payload = decodePayload(token);
+     
       try {
-        const response = await fetch(API_BASE_URL + "/users/" + payload.user.id);
+        const response = await fetch(API_BASE_URL + "/users?id=" + payload.user.id);
         const userData = await response.json();
-        setUserInfo(prevState => ({ ...prevState, ...userData.user }));
+       
+        setUserInfo(prevState => ({ ...prevState, ...userData.users[0] }));
       } catch (err) {
         console.error(err.message);
       }

@@ -1,3 +1,4 @@
+import { CgClose } from "react-icons/cg"; 
 import { BiImageAdd } from "react-icons/bi"; 
   import { BiUpload } from "react-icons/bi"; 
   import { BiError } from "react-icons/bi"; 
@@ -16,32 +17,47 @@ import { BiImageAdd } from "react-icons/bi";
   import { CgArrowsExchangeAlt } from "react-icons/cg";
   import {API_BASE_URL} from '../../../../../../config';
   import MediaConverter from '../../../../../../function/Media';
-import { Link } from "react-router-dom";
+  import {useProductCategories} from '../../../../../../Context/product_categories';
+  import Backdrop from '@mui/material/Backdrop';
+  import { Link } from "react-router-dom";
+  import LinearProgress from '@mui/joy/LinearProgress';
+  import Typography from '@mui/joy/Typography';
+  import Snackbar from '@mui/material/Snackbar';
+  import axios from 'axios'; 
   function AddProduct() {
-    const categories = [
-      { title: 'Électronique' },
-      { title: 'Livres' },
-      { title: 'Vêtements' },
-      { title: 'Nourriture' },
-    ];
+    const [progress, setProgress] = React.useState(0);
+    const[openprogress, setOpenprogress] = React.useState('');
+    const {productCategories} = useProductCategories();
     const [open, setOpen] = useState(false);
-
-  
+    const [error, setError] = useState('');
       const [title, setTitle] = useState('');
       const [stock, setStock] = useState('');
       const [price, setPrice] = useState('');
-      const [category, setCategory] = useState(null);
+      const [category, setCategory] = useState( {"id": null,"name": '',"description": null,"super_category_id": null});
       const [deliveryPrice, setDeliveryPrice] = useState('');
       const [editorState, setEditorState] = useState('');
       const [selectedFiles, setSelectedFiles] = useState([]);
       const [titleError, setTitleError] = useState(false);
       const [categoryError, setCategoryError] = useState(false);
-    
+        
+      const initData=()=>{
+        setTitle('');
+        setStock('');
+        setPrice('');
+        setCategory(  {
+          "id": null,
+          "name": '',
+          "description": null,
+          "super_category_id": null});
+        setDeliveryPrice('');
+        setEditorState('');
+        setSelectedFiles([]);
+      }
 
       useEffect(() => { 
         
       const timeout =() => {
-        if ( title || stock || price || category || deliveryPrice || editorState.trim() || selectedFiles.length > 0) {
+        if ( title.trim()!=='' || stock || price || category.name.trim()!=='' || deliveryPrice || editorState || selectedFiles.length > 0) {
         setOpen(true);
         } else {
           setOpen(false);
@@ -75,7 +91,7 @@ import { Link } from "react-router-dom";
             setTitleError(false);
           }
         
-          if (!category) { // Checks if category is null or undefined
+          if (!category.name.trim()) { // Checks if category is null or undefined
             setCategoryError(true);
             isValid = false;
           } else {
@@ -86,40 +102,63 @@ import { Link } from "react-router-dom";
         };
         
       
-        const handleSubmit = (e) => {
-          e.preventDefault(); // Prevent default form submission behavior
+        const handleSubmit = async (e) => {
+          e.preventDefault(); 
         
-          // Validate the form before proceeding
           if (!validateForm()) { 
-            return; // Stop form submission if validation fails
+            return; 
           }
         
-        
-         
+          // Préparation des données du formulaire à envoyer
           const formData = new FormData();
-          formData.append('title', title);
-          formData.append('category', category.title);
-          formData.append('stock', stock);
-          formData.append('price', price);
-          formData.append('deliveryPrice', deliveryPrice);
-          formData.append('description', editorState);
-         
-          selectedFiles.forEach((file, index) => {
-            formData.append(`images[${index}]`, file);
-          });
-          console.log(title, category.title, stock, price, deliveryPrice, editorState);  
-        //   fetch(`${API_BASE_URL}/products`, {
-        //     method: 'POST',
-        //     headers: {
-        //       'Authorization': `${localStorage.getItem('token')}`
-        //     },
-        //     body: formData,
-        //   })
-        //   .then(response => response.json())
-        //   .then(data => console.log(data))
-        //   .catch(error => console.error('Error:', error));
-         };
+          formData.append('store_id', JSON.parse(localStorage.getItem('store')).id);
+          formData.append('name', title);
+          formData.append('subcategory_id', category.id);
+          formData.append('stock', stock || 0);
+          formData.append('price', price || 0);
+          formData.append('delivery_price', deliveryPrice || 0);
+          formData.append('description', editorState );
         
+          // Ajout des fichiers sélectionnés au formData
+          selectedFiles.forEach(file => {
+            formData.append('product_media', file);
+          });
+        
+          try {
+            setOpenprogress('openprogress'); // Affiche le backdrop de progression
+        
+            const response = await axios.post(`${API_BASE_URL}/products`, formData, {
+              headers: {
+                'Authorization': `${localStorage.getItem('token')}`,
+                // Content-Type doit être multipart/form-data pour l'envoi de fichiers
+                'Content-Type': 'multipart/form-data',
+              },
+              onUploadProgress: (progressEvent) => {
+                const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+                setProgress(percentCompleted);
+              }
+            });
+           
+            setOpenprogress(''); // Cache le backdrop de progression une fois le téléversement terminé
+        
+          const data = response.data;
+            if (data.success) {
+              initData();
+              console.log(data);
+              setOpenprogress('openSnackbar'); 
+             
+
+            } else {
+              throw new Error(data.message);
+            }
+          } catch (error) {
+            setOpenprogress(false);
+            console.error(error);
+            setError(error.message);
+          }
+          initData();
+        };
+      
          const DragHandle = sortableHandle(() => <span><CgArrowsExchangeAlt /></span>);
          const SortableItem = SortableElement(({ value, itemIndex }) => (
           value.type.startsWith('video/') ? 
@@ -188,10 +227,46 @@ import { Link } from "react-router-dom";
        
       return (
       <>
+       {openprogress==='openSnackbar'&&<Snackbar
+        open={true}
+        autoHideDuration={5000}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        onClose={()=>{setOpenprogress('')} }
+        message="Product created successfully."
+      />}
+     {openprogress==='openprogress' && <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={true} >
+     <LinearProgress
+        determinate
+        variant="outlined"
+        color="neutral"
+        size="sm"
+        thickness={32}
+        value={progress}
+        sx={{
+          '--LinearProgress-radius': '0px',
+          '--LinearProgress-progressThickness': '24px',
+          boxShadow: 'sm',
+          margin:'2em',
+          borderColor: 'neutral.500',
+        }}
+      >
+        <Typography
+          level="body-xs"
+          fontWeight="xl"
+          textColor="common.white"
+          sx={{ mixBlendMode: 'difference' }}
+        >
+          LOADING… {`${Math.round(progress)}%`}
+        </Typography>
+      </LinearProgress>
+        </Backdrop>}
+
+      
         <div className='AddProduct'>
         <div className="header"><Link to={'../Product'}><button> <IoMdArrowRoundBack /></button> </Link> <h2>Add product</h2></div>
           <form>
           <div className="card">
+            {error.trim() && <div className="error"><button onClick={()=>{setError("")}}><CgClose /> </button><p>{error}</p></div>}
               <div  className='Input'>
               <label htmlFor="name">Title</label>
               <TextField
@@ -244,26 +319,30 @@ import { Link } from "react-router-dom";
 
               <Autocomplete
                 id="category"
-                options={categories}
-                getOptionLabel={(option) => option.title}                
+                options={productCategories}
+                getOptionLabel={(option) => option.name}                
                 renderInput={(params) => <TextField {...params}error={categoryError}  
-                helperText={categoryError ? "Category is required." : ""}
+                helperText={categoryError ? "Select Category existed in the list" : ""}
                 FormHelperTextProps={{ style: { color: 'red'}}}
                 placeholder="Choose a Category"/>}
                 freeSolo
-                sx={{
-                  '& .MuiInputBase-input': {
-                    fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
-                    fontSize: '15px',
-                    padding: '10px'
-                  },
-                }}
                 value={category}
-                 onChange={(event, newValue) => {
-                setCategory(newValue);
-                }}
-              isOptionEqualToValue={(option, value) => option.title === value.title}
-               
+                onChange={(e, value) =>{if(value) {setCategory(value)} else {setCategory(
+                  {"id": null,
+                  "name": '',
+                  "description": null,
+                  "super_category_id": null}
+                )}}}
+              isOptionEqualToValue={(option, value) => option.name === value.name}
+              sx={{
+                  
+                '& .MuiInputBase-input': {
+                  fontFamily: 'Franklin Gothic , Arial Narrow, Arial, sans-serif',
+                  padding: "0.35rem 1.5rem !important",
+                  fontSize: '0.9rem',
+                  fontWeight: 400,
+                },
+              }}
               />
               <p>Select the category that best fits your product.</p>
         </div>  
@@ -331,7 +410,7 @@ import { Link } from "react-router-dom";
         {open && <div className="Save">
           <h1> <BiError /> Unsaved Product</h1>
             <div className="button">
-              <button type="submit" >Discard</button>
+              <button onClick={(e)=>{e.preventDefault();initData();}} >Discard</button>
               <button  onClick={handleSubmit} className="Saveb">Save</button>      
             </div>
           </div> }     
