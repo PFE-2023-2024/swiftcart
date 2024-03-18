@@ -57,7 +57,7 @@ const MyProduct = () => {
       headerName: 'Image',
       width: 90,
       renderCell: (params) => (
-        <img src={params.value[0]||'https://www.soon7.net/wp-content/uploads/2017/10/placeholder-1.png'} alt="product" style={{ height: 30, borderRadius: '5px' }} />
+        <img src={params.value? params.value[0]:'https://www.soon7.net/wp-content/uploads/2017/10/placeholder-1.png'} alt="product" style={{ height: 30, borderRadius: '5px' }} />
       ),
     },
     { field: 'name', headerName: 'Name', width: 90 },

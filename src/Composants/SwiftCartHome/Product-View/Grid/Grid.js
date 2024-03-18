@@ -1,14 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import {ProductService} from '../../../../ProductService';
+
 import ProductItem from '../Product-Card/ProductItem';
 import './Grid.css';
-function Grid_Product() {
-    const [products, setProducts] = useState([]);
-   
-    useEffect(() => {
-        ProductService.getProductsSmall().then((data) => setProducts(data.slice(0, 9)));
-    }, []);
-
+function Grid_Product({products}) {
+    
    
   return (
     <div className='Grid_Product'>

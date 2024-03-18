@@ -6,7 +6,10 @@ function Swiftcart() {
   return (
    <>
    <NavBar/>
+   <div style={{background:'whitesmoke'}}>
    <Outlet></Outlet>
+   </div>
+   
    </>
   )
 }

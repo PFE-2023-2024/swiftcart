@@ -21,7 +21,6 @@ export const ProductCategoriesProvider = ({ children }) => {
         const categories = await response.json();
         if (categories.success) {
           setProductCategories(categories.product_categories);
-          console.log(categories.product_categories);
         }
       } catch (err) {
         console.error(err.message);

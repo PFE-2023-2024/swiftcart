@@ -20,6 +20,7 @@
 }
 
 .search .result{
+    overflow: hidden;
     padding: 1rem;
     background-color: whitesmoke;
     grid-area: body;

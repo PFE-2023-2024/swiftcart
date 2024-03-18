@@ -1,8 +1,14 @@
-.Result{}
+.Result{
+    display: block;
+    width: 100%;
+}
 .Result .ResultNav .navaa{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.Result .ResultNav {
+    padding-bottom: 1em;
 }
 .Result .ResultNav .button{
     display: none;
@@ -13,6 +19,7 @@
     padding: 0.2em 0.5em;
     border-radius: 0.1em;
     border: 0.1em solid black;
+    margin-bottom: 0.5em;
 }
 .Result .ResultNav .button:hover{
     background-color: rgb(253, 233, 115);

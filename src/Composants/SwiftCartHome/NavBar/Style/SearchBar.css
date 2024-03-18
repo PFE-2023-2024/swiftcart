@@ -10,12 +10,13 @@
 .ant-input:hover, .ant-input:focus {
     border-color: transparent;
 }
-.Dropdown{
+.Dropdownsqqsx{
  
 }
- .Dropdown .nav-text{
+ .Dropdownsqqsx .nav-text{
    border-radius: 0;
    border: none;
+   font-weight: 400;
    background-color:  gold;
    color: black;
    border-top-left-radius:5px ;
@@ -33,8 +34,24 @@
 }
 
 
-.Dropdown .nav-text:active , .Dropdown .nav-text:hover, .Dropdown .nav-text:focus,.Dropdown .nav-text:visited,.Dropdown .nav-text:link,.Dropdown .nav-text:target,.Dropdown .nav-text:focus{
+.Dropdownsqqsx .nav-text:hover{
     background-color: gold;
     color: black;
-
-}  
+}
+.Dropdownsqqsx .nav-text:focus{
+    background-color: gold!important;
+    color: black;
+}
+.Dropdownsqqsx .nav-text:active,.Dropdownsqqsx .nav-text:checked,.Dropdownsqqsx .nav-text:any-link,.Dropdownsqqsx .nav-text:visited,.Dropdownsqqsx .nav-text:link,.Dropdownsqqsx .nav-text:where(:hover),.Dropdownsqqsx .nav-text:where(:focus),.Dropdownsqqsx .nav-text:where(:active),.Dropdownsqqsx .nav-text:where(:checked),.Dropdownsqqsx .nav-text:where(:any-link),.Dropdownsqqsx .nav-text:where(:visited),.Dropdownsqqsx .nav-text:where(:link){
+    background-color: gold!important;
+    color: black!important;
+}
+@media screen and (max-width: 800px){
+    .Dropdownsqqsx{
+        display: none;
+    }
+    .ant-input {
+        border-top-left-radius:0.3em ;
+        border-bottom-left-radius:0.3em ;
+    }
+}

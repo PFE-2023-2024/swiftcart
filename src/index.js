@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserProvider } from './Context/UserProvider';
 import {StoreCategories} from './Context/StoreCategories';
 import {ProductCategoriesProvider}from './Context/product_categories';
+import {SerachBar} from './Context/SerachBar';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -14,7 +15,9 @@ root.render(
     <StoreCategories>
     <ProductCategoriesProvider>
     <UserProvider>
+    <SerachBar>
       <App />
+    </SerachBar>
     </UserProvider>
     </ProductCategoriesProvider>
     </StoreCategories>
