@@ -5,14 +5,20 @@ import './Result.css';
 import Chip from '@mui/material/Chip';
 import { RiFilter3Line } from "react-icons/ri";
 import Scroll_Horizontal from '../../Store-View/Scroll_Horizontal/Scroll_Horizontal';
-import { Margin } from '@mui/icons-material';
 
-function Result({Stores,filters, Open,onDeleteFilter,handleCancelFilter,products,search,handDeleteSearch}) {
+import { Pagination } from 'antd';
+function Result({stores_count,Stores,filters, Open,onDeleteFilter,handleCancelFilter,products,search,handDeleteSearch,products_count,index,indexTo,setIndex,setIndexTo}) {
+    const [defaultCurrent, setDefaultCurrent] = useState(1);
+    useEffect(() => {
+        setDefaultCurrent(1);
+    }, [products_count]);
+    
+    
     return (
         <div className='Result'>
             <div className='ResultNav'>
                 <div className='navaa'>
-                    <p>25 - 48 of 1092 results</p>
+                    <p>{products_count>15  && <>{index} - {indexTo} of</>} {products_count} results of Products</p>
                     <Dropdown>
                         <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                             Sort by
@@ -67,7 +73,7 @@ function Result({Stores,filters, Open,onDeleteFilter,handleCancelFilter,products
             <div className='ResultFilter'></div>
             <div style={{width:'100%'}}>
                 {
-                    Stores.length>0 ?  <Scroll_Horizontal stores={Stores} name={'Stores'}/>:
+                    Stores.length>0 ?  <Scroll_Horizontal stores={Stores} name={`Stores (${stores_count})`}/>:
                     <h1 style={{fontSize:'1.1em',fontWeight:'500',color:'rgb(26, 25, 25)',marginBottom:'1em'}}>No stores found</h1>
                 }
           
@@ -75,7 +81,16 @@ function Result({Stores,filters, Open,onDeleteFilter,handleCancelFilter,products
           
              {products.length>0?    <div style={{padding:'0.2em'}}> <h1 style={{fontSize:'1.1em',fontWeight:'500',color:'rgb(26, 25, 25)',marginBottom:'1em'}}>Products</h1>
        <Grid_Product products={products}/>  </div>: <h1 style={{fontSize:'1.1em',fontWeight:'500',color:'rgb(26, 25, 25)',marginBottom:'1em'}}>No products found</h1>}
-        
+                <div style={{display:'flex',justifyContent:'center',width:'100%'}}>  <Pagination 
+                defaultCurrent={defaultCurrent} showSizeChanger={false} 
+                pageSize={15} total={products_count} 
+                onChange={(page, pageSize) => {
+                    setIndex((page-1)*pageSize+1)
+                    setIndexTo(page*pageSize)
+                    window.scrollTo(0, 0);
+                }
+                }
+                /></div>
           
           
         </div>

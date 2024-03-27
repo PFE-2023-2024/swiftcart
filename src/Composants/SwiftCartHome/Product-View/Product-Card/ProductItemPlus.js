@@ -46,11 +46,11 @@ const addToList = () => {
         <Link to="/product/1" className="">
         <p className="title">{product.name}</p>
         </Link>
-        <Rate disabled defaultValue={4} className="rate"/>
+        <Rate disabled defaultValue={4} value={product.rating} className="rate"/>
         <p className="price">{product.price} TND</p>
         <p className="delevery price">{product.delivery_price} TND</p>
         <p className="store">{storeName}</p>
-        <button className="add" onClick={addToList}>Add to cart</button>
+        <button className="add" onClick={(event)=>{  event.stopPropagation();addToList();}}>Add to cart</button>
     </div>
   )
 }

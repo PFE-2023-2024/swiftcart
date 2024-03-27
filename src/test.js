@@ -1,28 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import Loadable from './Composants/Store/StoreManagement/Composants/dashboard/Loadable';
+ // Assurez-vous de créer ce fichier CSS
+ import { lazy } from 'react';
+ import ThemeCustomization from './Composants/Store/StoreManagement/Composants/dashboard/themes';
+  const DashboardDefault = Loadable(lazy(() => import('./Composants/Store/StoreManagement/Composants/dashboard')));
+function Carousel() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+   const items=['Produit 1', 'Produit 2', 'Produit 3']
+  const goPrevious = () => {
+    const isFirstItem = currentIndex === 0;
+    const newIndex = isFirstItem ? items.length - 1 : currentIndex - 1;
+    setCurrentIndex(newIndex);
+  };
 
-import ProductItemPlus from './Composants/SwiftCartHome/Product-View/Product-Card/ProductItemPlus';
+  const goNext = () => {
+    const isLastItem = currentIndex === items.length - 1;
+    const newIndex = isLastItem ? 0 : currentIndex + 1;
+    setCurrentIndex(newIndex);
+  };
 
-export default function BasicDemo() {
-   
-        return (
-           <div
-           style={{
-            display:'flex',
-            width: '800px',
-            overflow: 'hidden',
-            alignItems: 'center',
-            padding: '10px',
-        }}
-           >
-             <ProductItemPlus/>
-            <ProductItemPlus/>
-            <ProductItemPlus/>
-           </div>
-        );
-    };
+  return (
+   <>
+   <ThemeCustomization>
+   <DashboardDefault/>
+   </ThemeCustomization>
+   </>
+  );
+}
 
-
-
-    
-
-        
+export default Carousel;

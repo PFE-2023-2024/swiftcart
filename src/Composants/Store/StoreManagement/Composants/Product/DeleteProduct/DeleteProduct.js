@@ -1,9 +1,7 @@
 import { AiFillDelete } from "react-icons/ai"; 
 import React from 'react'
 import Backdrop from '@mui/material/Backdrop';
-import { CgClose } from "react-icons/cg";
 import { MdReportGmailerrorred } from "react-icons/md";
-import {  CircularProgress, TextField } from '@mui/material';
 import { AiOutlineClose } from "react-icons/ai";
 import {API_BASE_URL} from '../../../../../../config';
 import './DeleteProduct.css'

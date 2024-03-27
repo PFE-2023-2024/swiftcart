@@ -40,7 +40,7 @@ function EditProduct() {
                 embedUrl:url,// Vous pouvez vouloir utiliser une vignette spécifique pour les vidéos
                 renderItem: () => (
                   <div className='video-wrapper'>
-                    <video controls src={url} type={`video/${extension}`} poster={'https://kohantextilejournal.com/wp-content/uploads/2018/04/video-poster-600x330.jpg'} style={{width: "95%",paddingBottom:'2em'}}>
+                    <video className="imdsozo9595g" controls src={url} type={`video/${extension}`} poster={'https://kohantextilejournal.com/wp-content/uploads/2018/04/video-poster-600x330.jpg'}   >
                     
                     </video>
                   </div>
@@ -54,7 +54,7 @@ function EditProduct() {
                 
                 renderItem: () => (
                   <div className='video-wrapper'>
-                    <img controls src={url}   style={{width: "95%",maxHeight:'400px',paddingBottom:'2em'}}>
+                    <img className="imdsozo9595g" controls src={url}>
                      
                     </img>
                   </div>
@@ -135,10 +135,11 @@ function EditProduct() {
         <div className="card">
         <div className="imagechange" >
             <label htmlFor="image">Media</label><button onClick={()=>{setEditImage(true)}}> <MdModeEditOutline/></button> </div>
-            <div className="Uploadimages">
+            <div className="Uploadimages" >
                   
             <ImageGallery 
-    thumbnailPosition='bottom'
+           
+    thumbnailPosition='left'
     showBullets={true}
     items={images} />
 

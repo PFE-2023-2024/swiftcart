@@ -1,0 +1,265 @@
+.kkskskks{
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+  
+}
+.Product_page_658589{
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+    border-radius: 0.5em;
+    background-color: white;
+    width: 81%;
+    & .cioezj4956{
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 1em;
+    }
+  
+    & .ImageGallery{
+        width: 40%;
+        padding: 1em;
+    }
+    
+}
+.cioezj4956 .nkjsq125{
+    display: flex;
+    margin: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.cioezj4956 .nkjsq125 h1{
+ font-size: 1.5em;
+}
+.cioezj4956 .nkjsq125 .ixozj{
+  font-size: 2em;
+  color: gold;
+  cursor: pointer;
+}
+.cioezj4956  .iiodaji h2{
+   font-size: 1.2em;
+}
+.cioezj4956 {
+    & .uuhzuxhuhhuzpzo{
+        display: flex;
+        align-items: center;
+    }
+    & .uuhzuxhuhhuzpzo h3{
+        margin-left: 2em;
+        font-size: 1.2em;
+    }
+    & .oksaozk{
+        display: flex;
+    }
+    & .oksaozk p{
+        padding: 0.5em;
+        margin: 0;
+        font-size: 1em;
+        font-weight:600;
+        color: rgb(20, 20, 20);
+    }
+    & .djiiejzoij{
+        display: flex;
+        padding: 0;
+    }
+    & .djiiejzoij button{
+        color: royalblue;
+        border: none;
+        background-color: transparent;
+        font-size: 1em;
+        font-weight: 600;
+        padding: 0.5em;
+    }
+    & .sss{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 2em;
+        
+
+    }
+    & .sss .number{
+      padding: 1em;
+    }
+    & .Quantity{
+        display: flex;
+        align-items: center;
+        padding: 0.5em 0;
+    }
+    & .Quantity h2{
+        padding: 0.5em 0 ;
+        margin: 0;
+        font-size: 1.2em;
+
+    }
+    & .sss button{
+        background-color: #ddd;
+        margin: 0;
+        padding: 1em;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+       aspect-ratio: 1/1;
+       border: none;
+        font-weight: 600;
+    };
+    & .sss button:hover{
+        background-color: #ccc;
+    }
+    & .buy{
+        display: flex;
+        align-items: center;
+    }
+    & .InStoke{
+        margin: 0.2em 0;
+        font-size: 1.2em;
+        font-weight: 600;
+        color: green;
+    }
+    & .OutStoke{
+        padding: 0.5em 0;
+        margin: 0;
+        font-size: 1.2em;
+        font-weight: 600;
+        color: red;
+    }
+    & .buy button{
+        padding: 0.6em 3em;
+       background-color: gold;
+       color: black;
+       border-radius: 2em;
+       border: none;
+       font-weight: 600;
+       box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+    }
+
+    & .buy button:hover{
+        background-color: #ffcc00;
+    }
+    & .buy .naw{
+        margin-left: 1em;
+        background-color: orange;
+    }
+    & .buy .naw:hover{
+        background-color: #ff6600;
+    }
+    & .category{
+        font-size: 1em;
+        font-weight: 600;
+    }
+    & .Brand{
+        font-size: 1em;
+        font-weight: 600;
+        margin-left: 0.5em;
+    }
+}
+.BoutiqueInfo984965 {
+    & .displayMedia{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 1em 0;
+        flex-direction: column;
+    }
+    & img{
+    width: 65%;
+    margin: 0 0.5em ;
+    border: 1px solid #ddd;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+    border-radius: 50%;}
+    & .BoutiqueName h1{
+        font-size: 1.5em;
+    }
+    & .boutique78{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 1em 0;
+    }
+    & .boutique78 h3{
+        font-size: 1.2em;
+        margin: 0;
+    }
+
+    & .info {
+        cursor: pointer;
+       display: flex;
+       align-items: center;
+    }
+    & .info .phone{
+        font-size: 1.2em;
+        font-weight: 600;
+    }
+    & .info h3{
+        margin: 0;
+        margin-left: 0.1em;
+        font-size: 1.2em;
+     
+
+    }
+  
+}
+.BoutiqueInfo984965{
+    width: 18%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    background-color: white;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+    border-radius: 0.5em;
+}
+@media screen and (max-width: 768px){
+    .kkskskks{
+        flex-direction: column;
+        width: 100%;
+    }
+    .BoutiqueInfo984965{
+        flex-direction: row;
+        & img{
+            width: 40%;
+            margin-right: 1em;
+        }
+    }
+
+    .Product_page_658589{
+        flex-direction: column;
+        width: 100%;
+        & .ImageGallery{
+            width: 100%;
+        }
+        & .cioezj4956{
+            width: 100%;
+        }
+    }
+    .BoutiqueInfo984965{
+        width: 100%;
+        margin-top: 1em;
+    }
+    .cioezj4956{
+        & .buy button{
+            padding: 0.6em 2em;
+        }
+    }
+    
+}
+.Product_Details875{
+    background-color: white;
+    margin: 1em;
+    padding: 1em;
+    margin-bottom: 0;
+}
+
+

@@ -7,6 +7,7 @@ import All_Stores from '../Composants/SwiftCartHome/All-Stores/All_Stores';
 import Wishlist from '../Composants/SwiftCartHome/wishlist/Wishlist';
 import Compare from '../Composants/SwiftCartHome/Compare/Compare';
 import Cart from '../Composants/SwiftCartHome/Cart/Cart';
+import Product_page from '../Composants/SwiftCartHome/Product-Page/Product-page';
 function SwiftCartHome() {
   return (
     <Routes>
@@ -18,6 +19,7 @@ function SwiftCartHome() {
       <Route path="Compare" element={<Compare />} />
       <Route path="Search" element={<Search />} />
       <Route path='Cart' element={<Cart />} />
+      <Route path="product/:id" element={<Product_page/>}/>
       </Route>
     </Routes>
   )

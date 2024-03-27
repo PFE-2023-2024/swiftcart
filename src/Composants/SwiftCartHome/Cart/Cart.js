@@ -5,6 +5,7 @@ import './Cart.css';
 import CartItem from './CartItem';
 import { API_BASE_URL } from '../../../config';
 import { Alert, Snackbar } from '@mui/material';
+import Pay from './Pay';
 function Cart() {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
@@ -26,7 +27,6 @@ function Cart() {
               
               const data = await res.json();
               setProducts(data.products);
-              console.log('Products:', data);
           } catch (error) {
               console.error('Error fetching products:', error);
           }
@@ -53,7 +53,12 @@ function Cart() {
     CalculeTotal()
    }, [productsIds,products]) 
   return (
-    <> {(open === 'wishlist' || open === 'compare' || open === 'cart') &&
+    <> 
+    {(open === 'Pay') && <Pay setOpen={setOpen}
+    Products={productsIds}
+    
+    /> }
+    {(open === 'wishlist' || open === 'compare' || open === 'cart') &&
     <Snackbar
            open={true}
            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
@@ -106,7 +111,9 @@ function Cart() {
         </div>
         <div  className='checkout'>
           <h1>Subtotal ({totalItems} items): {Total.toFixed(3)} TND</h1>
-          <button>Proceed to checkout</button>
+          <button onClick={
+            ()=>{setOpen('Pay')}
+          }>Proceed to checkout</button>
         </div>
         
         </div>

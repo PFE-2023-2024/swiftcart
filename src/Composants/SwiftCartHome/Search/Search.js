@@ -12,12 +12,16 @@ function Search() {
   const [filters, setFilters] = useState({
     selectedMerchants: params.getAll('merchants'),
     selectedGenres: params.getAll('genres'),
+
     price: {
         min: params.get('min') ? Number(params.get('min')) : 0,
         max: params.get('max') ? Number(params.get('max')) : 99000,
     },});
 
-// Mettre à jour l'URL à partir de l'état des filtres
+const[index,setIndex]=useState(1)
+const[indexTo,setIndexTo]=useState(15)
+const[products_count,setProducts_count]=useState(0)
+const[stores_count,setStores_count]=useState(0)
 useEffect(() => {
     const params = new URLSearchParams();
     filters.selectedMerchants.forEach(merchant => params.append('merchants', merchant));
@@ -65,17 +69,22 @@ const [products, setProducts] = React.useState([])
 useEffect(() => {
   const  fetchData = async () => {
     try {
-      const response = await fetch(API_BASE_URL+`/Search?${filters.price.min ? `min_price=${filters.price.min}` : ''}${filters.price.max ? `&max_price=${filters.price.max}` : ''}${search.selectedCategories.length ? `&subcategories=${search.selectedCategories.join(',')}` : ''}${filters.selectedMerchants.length ? `&store=${filters.selectedMerchants.join(',')}` : ''}${filters.selectedGenres.length ? `&genres=${filters.selectedGenres.join(',')}` : ''}${search.supcategories.length ? `&categories=${search.supcategories.join(',')}` : ''}${search.txt.length ? `&search=${search.txt.join(',')}` : ''}`)
+      const response = await fetch(API_BASE_URL+`/Search?${filters.price.min ? `min_price=${filters.price.min}` : ''}${filters.price.max ? `&max_price=${filters.price.max}` : ''}${search.selectedCategories.length ? `&subcategories=${search.selectedCategories.join(',')}` : ''}${filters.selectedMerchants.length ? `&store=${filters.selectedMerchants.join(',')}` : ''}${filters.selectedGenres.length ? `&genres=${filters.selectedGenres.join(',')}` : ''}${search.supcategories.length ? `&categories=${search.supcategories.join(',')}` : ''}${search.txt.length ? `&search=${search.txt.join(',')}` : ''}&product_from_index=${index}&product_to_index=${indexTo}`)
          const data = await response.json()
-    setProducts(data.products)
+          setProducts(data.products)
+          setProducts_count(data.products_count)
+          setStores_count(data.stores_count)
+    
+
     setStores(data.stores)
+   
     } catch (error) {
       console.log(error)
     }
     
   }
   fetchData()
-  }, [filters,search])
+  }, [filters,search,index,indexTo])
   
 
   return (
@@ -89,7 +98,7 @@ useEffect(() => {
         <Filter search={search} setSearch={setSearch} onClose={()=>{setOpen(false)}} filters={filters} setFilters={setFilters} open={open}/>
         </div> 
         <div className='result'>
-          <Result Stores={Stores} search={search} products={products}handDeleteSearch={handDeleteSearch} handleCancelFilter={handleCancelFilter} onDeleteFilter={handleDeleteFilter}  filters={filters}   Open={()=>{setOpen(true)}}/>
+          <Result stores_count={stores_count} index={index}indexTo={indexTo} setIndex={setIndex} setIndexTo={setIndexTo} products_count={products_count} Stores={Stores} search={search} products={products}handDeleteSearch={handDeleteSearch} handleCancelFilter={handleCancelFilter} onDeleteFilter={handleDeleteFilter}  filters={filters}   Open={()=>{setOpen(true)}}/>
          </div>      
    </div>
    </>

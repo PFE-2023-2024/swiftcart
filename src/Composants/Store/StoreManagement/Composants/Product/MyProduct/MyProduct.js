@@ -6,21 +6,23 @@ import { MdAdd } from "react-icons/md";
 import { AiFillDelete } from "react-icons/ai";
 import { BiEdit } from "react-icons/bi";
 import { API_BASE_URL } from '../../../../../../config';
-import {useProductCategories} from '../../../../../../Context/product_categories';
 import DeleteProduct from '../DeleteProduct/DeleteProduct';
 import Snackbar from '@mui/material/Snackbar';
 import Rating from '@mui/material/Rating';
+import {MdDelete } from "react-icons/md";
+
 const MyProduct = () => {
   const[products, setProducts] = useState([]);
   const navigate = useNavigate();
-  const {productCategories} = useProductCategories();
+  const [selectedProducts, setSelectedProducts] = useState([]);
   const[open, setOpen] = useState('');
   const[id,setID] = useState('');
   const handleEdit = (row) => {
      navigate(`../Product/edit/${row.id}`, { state: { products: row } });
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = (event,id) => {
+    event.stopPropagation();
     setID(id);
    setOpen('delete');
  
@@ -49,7 +51,7 @@ const MyProduct = () => {
     };
     fetchProducts();
     console.log('products', products);
-  }, [products]);
+  }, [open]);
 
   const columns = [
     {
@@ -80,14 +82,42 @@ const MyProduct = () => {
           <button onClick={() => handleEdit(params.row)} className='edit-MyProduct-0'>
             <BiEdit />
           </button>
-          <button onClick={() => handleDelete(params.row.id)} className='delete-MyProduct-1'>
+          <button onClick={(event) => handleDelete(event,params.row.id)} className='delete-MyProduct-1'>
             <AiFillDelete />
           </button>
         </div>
       ),
     },
   ];
+  const handDeleteProducts = () => {
 
+    selectedProducts.map((product) => {
+      fetch(`${API_BASE_URL}/products?store_id=${JSON.parse(localStorage.getItem('store')).id}&&id=${product}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${localStorage.getItem('token')}`
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.success){
+            setOpen('Snackbar');
+        }})})
+}
+  const CustomToolbar = () => {
+    return (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <GridToolbar />
+         {selectedProducts.length > 0 && <div onClick={handDeleteProducts}className='css-1knaqv7-MuiButtonBase-root-MuiButton-root' >
+            <MdDelete /> Delete Selected
+        </div>}
+      </div>
+    );
+  };
+  useEffect(() => {
+    console.log('products', selectedProducts);
+  }, [selectedProducts]);
  
 
   return (
@@ -97,7 +127,7 @@ const MyProduct = () => {
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         autoHideDuration={5000}
         onClose={()=>{setOpen('')} }
-        message="Product delete successfully."
+        message="Products delete successfully."
       />}
     {open==='delete' && <DeleteProduct id={id} onClose={setOpen}></DeleteProduct>}
     <div className="MyProduct">
@@ -114,8 +144,12 @@ const MyProduct = () => {
           rows={products}
           columns={columns}
           components={{
-            Toolbar: GridToolbar,
+            Toolbar: () => <CustomToolbar/>,
           }}
+          onRowSelectionModelChange={(newSelection) => {
+            setSelectedProducts(newSelection);
+          }
+          }
           checkboxSelection
           pageSize={5}
           rowsPerPageOptions={[5]}

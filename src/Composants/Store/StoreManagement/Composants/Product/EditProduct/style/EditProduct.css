@@ -82,9 +82,18 @@
     flex-direction: column;
     margin-top: 1em;
     width: 100%;
+    overflow: hidden;
     border-radius: 0.5em;
     padding: 1em;
 
+}
+.imdsozo9595g{
+    width: auto;
+    height: 100%;
+    max-height:400px ;
+    object-fit: cover;
+    height: auto;
+    margin-top: 1em;
 }
 .EditProduct .imagechange{
     display: flex;

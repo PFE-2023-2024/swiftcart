@@ -3,11 +3,11 @@
     padding: 0;
     align-items: center;
 }
-.ant-input {
+.SearchBarixzjokzp .ant-input {
     border-radius: 0;
     border-color:gold ;
 }
-.ant-input:hover, .ant-input:focus {
+.SearchBarixzjokzp .ant-input:hover,.SearchBarixzjokzp .ant-input:focus {
     border-color: transparent;
 }
 .Dropdownsqqsx{

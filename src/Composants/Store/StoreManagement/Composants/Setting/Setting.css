@@ -2,7 +2,7 @@
 
 /* Styles for the Setting component */
 .setting {
-    padding-left: 5em;
+    padding-left: 2em;
     margin-top: 1em;
 }
 
@@ -10,9 +10,11 @@
   /* Add styles for the title */
 }
 .setting-title h2{
-    font-size: 1.5em;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-family: 'Public Sans', sans-serif;
     margin: 0;
-    font-size: 600;
 }
 .setting-content {
  margin-top: 1.5em;   

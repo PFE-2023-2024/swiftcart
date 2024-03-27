@@ -7,7 +7,9 @@ import hors_stock from '../../../../assets/images/hors stock.png'
 import './ProductItem.css'
 import Snackbar from '@mui/material/Snackbar';
 import { Alert } from "@mui/material";
-function ProductItem({product}) {
+import { Link } from "react-router-dom";
+import ValidateurChaine from "../../../../function/ValiderChaine";
+function ProductItem({product,openSnackbar}) {
     const token = localStorage.getItem('token')||null
     const [open, setOpen] = React.useState('');
     const isInlist = (listName) => {
@@ -45,9 +47,18 @@ function ProductItem({product}) {
   
 
     
-    const addToWishlist = () => addToList('wishlist');
-    const addToCompare = () => addToList('compare');
-    const addToCart = () => addToList('cart');
+    const addToWishlist = (event) =>{ 
+        event.preventDefault(); // Empêche la navigation
+        event.stopPropagation(); 
+        addToList('wishlist')};
+    const addToCompare = (event) =>{ 
+        event.preventDefault(); // Empêche la navigation
+        event.stopPropagation(); 
+        addToList('compare')};
+    const addToCart = (event) => {
+        event.preventDefault(); // Empêche la navigation
+        event.stopPropagation(); 
+        addToList('cart')};
 
     const removeFromWishlist = (listName) => {
         const list = JSON.parse(localStorage.getItem(listName)) || [];
@@ -56,6 +67,7 @@ function ProductItem({product}) {
         window.dispatchEvent(new Event('storageChange'));
 
         if(listName==='wishlist'){
+            
             setOpen('Wish')
         }
         if(listName==='compare'){
@@ -76,7 +88,7 @@ function ProductItem({product}) {
     );
   return (
    <>
-     {(open === 'wishlist' || open === 'compare' || open === 'cart') &&
+     {openSnackbar &&(open === 'wishlist' || open === 'compare' || open === 'cart') &&
          <Snackbar
                 open={true}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
@@ -92,7 +104,7 @@ function ProductItem({product}) {
                  {`Product added to ${open} successfully.`} 
                 </Alert>
          </Snackbar>}
-         {(open === 'Wish' || open === 'Compare' || open === 'Cart') &&
+         {openSnackbar &&(open === 'Wish' || open === 'Compare' || open === 'Cart') &&
          <Snackbar
                 
                 open={true}
@@ -110,32 +122,34 @@ function ProductItem({product}) {
                 </Alert>
          </Snackbar>}
 
-
+         <Link to={`/Swiftcart/product/${product.id}`}>
     <div className="ProductItem draw-border">
         <div className="cart1"> 
       
            {product?.stoke==0&&  <img src={hors_stock} alt="hors stock" className="hors_stock"/>} 
-           <img src={`${product.media ? product.media[0]:hors_stock}`} alt="image" style={{ width: '100%',maxHeight:'400px' }} />
+           <img src={`${product.media ? product.media[0]:hors_stock}`} alt="image" />
           { token && <div className="azsd894dez98">
           <Tooltip placement="left" title="Add to wishlist" arrow>
                            {!inWishlist
                            ?
                             <button type="button" onClick={addToWishlist}>< AiFillHeart /></button>:
-                            <button type="button" onClick={()=>removeFromWishlist('wishlist')}>< AiFillHeart style={{color:'#e31b23'}}/></button>}
+                            <button type="button" onClick={(event)=>{ event.preventDefault();event.stopPropagation(); removeFromWishlist('wishlist')}}>< AiFillHeart style={{color:'#e31b23'}}/></button>}
                         </Tooltip>
                         <Tooltip placement="left" title="Add to compare" arrow>
                             {!inCompare?
                             <button type="button" onClick={addToCompare}><HiOutlineSwitchHorizontal /></button>:
-                            <button type="button" onClick={()=>removeFromWishlist('compare')}><HiOutlineSwitchHorizontal style={{color:'blue'}}/></button>}
+                            <button type="button" onClick={(event)=>{event.preventDefault();event.stopPropagation();removeFromWishlist('compare')}}><HiOutlineSwitchHorizontal style={{color:'blue'}}/></button>}
                         </Tooltip>
             </div>}
            {token &&<button className="panier" onClick={addToCart}><span className="text1"> <TbShoppingCart className="dzijzio" /></span><span className="text2">Put in Basket</span></button>
      }    </div>
         <div className="cart2">
-            <h1>{product.name}</h1>
+        <h1>{ValidateurChaine.reduireEtValiderChaine( product.name,20)}</h1>
             <h2>{product.price} TND</h2>
         </div>
-    </div></>
+    </div>
+    </Link>
+    </>
   )
 }
 

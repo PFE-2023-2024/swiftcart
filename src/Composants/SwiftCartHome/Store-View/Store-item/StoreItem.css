@@ -25,6 +25,7 @@
     max-width: 150px;
     object-fit: cover;
     border-radius: 50%;
+    aspect-ratio: 1/1;
 }
 .StoreItemsqxplapl h3{
     font-size: 1.2em;
@@ -100,4 +101,21 @@
 }
 .StoreItemsqxplapl .linkazer.rounded:hover .dzuhucxzjçxj{
   display: inline;
+}
+@media screen and (max-width: 700px){
+  .StoreItemsqxplapl{
+    min-width: 180px;
+    max-width: 180px;
+  }
+  .StoreItemsqxplapl img{
+    max-height: 100px;
+    max-width: 100px;
+  }
+  .StoreItemsqxplapl h3{
+    font-size: 1em;
+  }
+  .StoreItemsqxplapl .linkazer{
+    font-size: 1.5em;
+  }
+  
 }

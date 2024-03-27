@@ -14,12 +14,12 @@ function Sidbar({setToggle}){
     
     const ProductItem=[
         {
-            path:"Home",
+            path:"Overview",
             name:"Home",
             icon:<HiHome />
         },
         {
-            path:"AddProduct",
+            path:"Order",
             name:"Orders",
             icon:<MdOutlineInventory />
         },
